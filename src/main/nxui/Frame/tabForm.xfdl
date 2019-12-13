@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.0">
+  <Form id="TabForm" width="1025" height="45" titletext="TabForm">
+    <Layouts>
+      <Layout width="1025" height="45" screenid="Desktop_screen"/>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**
+ * Program ID    : tabForm.xfdl
+ * Program Name  :
+ * Author        :
+ * Created On    :
+ * Content 	     : Tobesoft showcase 기반으로 작성
+ *                 > > 
+ * =============================================================================
+ * Revision history     Crated by    Content
+ * =============================================================================
+ *
+ */
+ 
+ /************************************************************************************************
+ * 1. Common library include
+ ************************************************************************************************/
+ 
+/************************************************************************************************
+ * 2. Variable declaration
+ ************************************************************************************************/
+ var objApp = nexacro.getApplication() ;
+
+this.FIRST_GAP = 1;
+this.BTN_GAP = 0;
+this.MARGIN_WIDTH = 58;
+
+this.TAB_WIDTH = 120;
+this.TAB_HEIGHT = 30;
+this.TAB_EXTRA_RIGHT_GAP = 24;
+this.EXTRA_WIDTH = 18;
+this.EXTRA_TOP = 6;
+this.EXTRA_HEIGHT = 17;
+
+
+this.EXTRA_BTN_PREFIX = "EXTRA_";
+this.TAB_BTN_PREFIX = "TAB_";
+this.bClose = true;
+
+ /************************************************************************************************
+ * 3. Funcrtion processing
+ ************************************************************************************************/
+ 
+/************************************************************************************************
+ * 4. User Event processing
+ ************************************************************************************************/]]></Script>
+  </Form>
+</FDL>
