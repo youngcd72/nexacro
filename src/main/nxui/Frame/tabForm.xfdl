@@ -2,7 +2,17 @@
 <FDL version="2.0">
   <Form id="TabForm" width="1025" height="45" titletext="TabForm">
     <Layouts>
-      <Layout width="1025" height="45" screenid="Desktop_screen"/>
+      <Layout width="1025" height="45" screenid="Desktop_screen">
+        <Div id="divTab" taborder="0" left="20" top="15" height="30" right="178"/>
+        <Edit id="Setfocus" taborder="1" readonly="true" oneditclick="Edit00_oneditclick" left="1000" top="28" width="1" height="1" style="background:stretch 4,4;"/>
+        <Button id="btn_PreMdi" taborder="2" defaultbutton="true" onclick="btn_PreMdi_onclick" cssclass="btn_MDI_spinup" top="24" right="168" width="10" height="15" style="bordertype:round 2 2 ;" visible="false"/>
+        <Button id="btn_cascade" taborder="3" onclick="btn_arrange_onclick" cssclass="btn_MDI_screenpop" visible="true" top="20" right="100" width="21" height="20"/>
+        <Button id="btn_tilehorizontal" taborder="4" onclick="btn_arrange_onclick" cssclass="btn_MDI_screenH" visible="true" top="20" right="76" width="21" height="20"/>
+        <Button id="btn_vertical" taborder="5" onclick="btn_arrange_onclick" visible="true" top="20" right="52" width="21" height="20" cssclass="btn_MDI_screenV"/>
+        <Button id="btn_maximize" taborder="6" onclick="btn_arrange_onclick" cssclass="btn_MDI_screenmax" visible="true" top="20" right="124" width="21" height="20"/>
+        <Button id="btn_closeAll" taborder="7" onclick="btn_arrange_onclick" cssclass="btn_MDI_screenclose" top="20" right="28" width="21" height="20" onkillfocus="btn_closeAll_onkillfocus"/>
+        <Button id="btn_NexMdi" taborder="8" defaultbutton="true" onclick="btn_NexMdi_onclick" cssclass="btn_MDI_spindn" top="24" right="155" width="10" height="15" style="bordertype:round 2 2 ;align:center middle;" visible="false"/>
+      </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[/**
  * Program ID    : tabForm.xfdl
