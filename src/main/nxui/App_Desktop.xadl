@@ -54,7 +54,19 @@ this.Application_onload = function(obj:nexacro.Application,e:nexacro.LoadEventIn
     gv_leftForm     = objApp.mainframe.TopFrameSet.LeftFrameSet.leftForm;
     gv_tabForm      = objApp.mainframe.TopFrameSet.LeftFrameSet.TabFrameSet.tabForm;
     gv_workForm     = objApp.mainframe.TopFrameSet.LeftFrameSet.TabFrameSet.workForm;
+	
+	this.fn_init();
 }
 
-]]></Script>
+ /**
+  * Appliction 초기화
+  **/
+ this.fn_init = function()
+ {
+	if(1 == 1) { // 로그인 여부 확인
+	
+	} else {
+		// 로그인
+	}
+ }]]></Script>
 </ADL>

@@ -55,9 +55,23 @@
 			<version>${nexacro.uiadapter.version}</version>
 		</dependency>
 		<!-- NEXACROPLATFORM UIADAPTER17 LIBRARY -->
-		
 
+		<!-- APACHE COMMONS LIBRARY -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.9</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+			<version>1.9.4</version>
+		</dependency>
+		<!-- APACHE COMMONS LIBRARY -->
+		
 	</dependencies>
+	
 	<build>
 		<finalName>nexacro</finalName>
 	</build>

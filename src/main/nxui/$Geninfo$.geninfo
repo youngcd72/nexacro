@@ -13,7 +13,7 @@
       <File url="typedefinition.xml" checksum="20191213134547" errormsg=""/>
       <File url="appvariables.xml" checksum="20191213111414" errormsg=""/>
       <File url="_resource_\_theme_\default\theme.xcss" checksum="20191213111414" errormsg=""/>
-      <File url="App_Desktop.xadl" checksum="20191213121129" errormsg=""/>
+      <File url="App_Desktop.xadl" checksum="20191216122448" errormsg=""/>
       <File url="Frame\topForm.xfdl" checksum="20191213113153" errormsg=""/>
       <File url="Frame\leftForm.xfdl" checksum="20191213113117" errormsg=""/>
       <File url="Frame\workForm.xfdl" checksum="20191213113135" errormsg=""/>
@@ -22,6 +22,7 @@
       <File url="lib\libUtil.xjs" checksum="20191213140306" errormsg=""/>
       <File url="lib\libNumber.xjs" checksum="20191213143057" errormsg=""/>
       <File url="lib\libString.xjs" checksum="20191213144422" errormsg=""/>
+      <File url="Frame\loginForm.xfdl" checksum="20191216102133" errormsg=""/>
     </Info>
   </GenInfo>
 </root>
