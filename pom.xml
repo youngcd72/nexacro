@@ -12,9 +12,41 @@
 	<properties>
 		<spring.maven.artifact.version></spring.maven.artifact.version>
 		<nexacro.uiadapter.version>1.0.0-SNAPSHOT</nexacro.uiadapter.version>
+		<egovframework.rte.version>3.6.0</egovframework.rte.version>
 	</properties>
 	
 	<repositories>
+	
+		<repository>
+			<id>mvn2s</id>
+			<url>https://repo1.maven.org/maven2/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>egovframe</id>
+			<url>http://maven.egovframe.kr:8080/maven/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>egovframe2</id>
+			<url>http://www.egovframe.go.kr/maven/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
 		<repository>
 			<id>tobesoft</id>
 			<url>http://mangosteen.tobesoft.co.kr/nexus/repository/maven-public/</url>
@@ -28,6 +60,51 @@
 	</repositories>
 	
 	<dependencies>
+
+		<!-- 표준프레임워크 실행환경 -->
+        <dependency>
+		    <groupId>egovframework.rte</groupId>
+		    <artifactId>egovframework.rte.ptl.mvc</artifactId>
+		    <version>${egovframework.rte.version}</version>
+		    <exclusions>
+		    	<exclusion>
+		    		<artifactId>commons-logging</artifactId>
+		    		<groupId>commons-logging</groupId>
+		    	</exclusion>
+		    </exclusions>
+        </dependency>
+        <dependency>
+		    <groupId>egovframework.rte</groupId>
+		    <artifactId>egovframework.rte.psl.dataaccess</artifactId>
+		    <version>${egovframework.rte.version}</version>
+            <exclusions>
+                <exclusion>
+                	<artifactId>log4j-core</artifactId>
+                	<groupId>org.apache.logging.log4j</groupId>
+                </exclusion>
+                <exclusion>
+                	<artifactId>log4j-slf4j-impl</artifactId>
+                	<groupId>org.apache.logging.log4j</groupId>
+                </exclusion>
+            </exclusions>		    
+        </dependency>
+        <dependency>
+			<groupId>egovframework.rte</groupId>
+			<artifactId>egovframework.rte.fdl.idgnr</artifactId>
+			<version>${egovframework.rte.version}</version>
+		</dependency>
+       	<dependency>
+			<groupId>egovframework.rte</groupId>
+			<artifactId>egovframework.rte.fdl.property</artifactId>
+			<version>${egovframework.rte.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.0.1</version>
+			<scope>provided</scope>
+		</dependency>
 
 		<dependency>
 			<groupId>junit</groupId>
@@ -69,7 +146,7 @@
 			<version>1.9.4</version>
 		</dependency>
 		<!-- APACHE COMMONS LIBRARY -->
-		
+
 	</dependencies>
 	
 	<build>
