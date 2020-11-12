@@ -2,7 +2,7 @@ package kr.or.coder.frame.ria.spring;
 
 import javax.servlet.http.HttpServletRequest;
 
-import kr.or.coder.frame.ria.data.RiaParameterMap;
+import kr.or.coder.frame.servlet.ParameterMap;
 
 /**
  * Spring UiAdaptor interface
@@ -18,8 +18,19 @@ import kr.or.coder.frame.ria.data.RiaParameterMap;
  * </pre>
  * 
  */
-public interface UiAdaptor {
+public class UiAdaptorImpl implements UiAdaptor {
 
-	public RiaParameterMap<String, Object> convert(HttpServletRequest request) throws Exception;
+    public Object convert(HttpServletRequest request) throws Exception {
+        
+        ParameterMap<String, Object> paramMap = new ParameterMap<String, Object>();
 
+        /* variable 처리 */
+
+        /* argument 처리 */
+
+        /* dataset 처리 */
+
+        return paramMap;
+
+    }
 }

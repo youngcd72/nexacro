@@ -10,55 +10,33 @@ import kr.or.coder.frame.ria.data.RiaParameterMap;
 
 
 /**
- * Spring ArgumentResolver 클래스
+ * Spring Ria ArgumentResolver 
  *  
  * @author youngcd
  * @since 2020.11.02
  * @version 1.0
  * 
  * <pre>
- * 수정일       수정자              수정내용
+ *  수정일자    수정자             수정내용
  * ----------  --------    ---------------------------
- * 2020.11.02  	youngcd        	    최초 생성
+ * 2020.11.02  	youngcd        	   최초작성
  * </pre>
  * 
  */
-public class RiaArgumentResolver implements WebArgumentResolver {
+public class CustomRiaArgumentResolver implements WebArgumentResolver {
 
-	private UiAdaptor uiA;
+    public Object resolveArgument(MethodParameter methodParameter, NativeWebRequest webRequest) throws Exception {
 
-	public void setUiAdaptor(UiAdaptor uiA) {
-		this.uiA = uiA;
+        Class<?> type = methodParameter.getParameterType();
+        UiAdaptor uiA = null; 
+
+        HttpServletRequest request = (HttpServletRequest) webRequest.getNativeRequest();
+
+        if(type.equals(RiaParameterMap.class)) {
+            uiA = UiAdaptorFactory.getUiAdaptor(request);
+        } else {
+            uiA = new UiAdaptorImpl();
+        }
+		return uiA.convert(request);
 	}
-
-	/**
-	 * Controller의 Parameter를 읽어와 분기한다.
-	 * 
-	 * @param MethodParameter methodParameter
-	 * @param NativeWebRequest webRequest
-	 * @return Object
-	 * @throws Exception
-	 */	  	
-	public Object resolveArgument(MethodParameter methodParameter, NativeWebRequest webRequest) throws Exception {
-		Class<?> type = methodParameter.getParameterType();
-		Object uiObject = null;
-		
-		if (uiA == null)
-			return UNRESOLVED;
-		
-		
-		/*
-		 * Controller 에서 처리해야 할 Argument 에 따른  Adapter 구분 방법을 확인해야 함.
-		 */
-		if (type.equals(RiaParameterMap.class)) {
-			
-			HttpServletRequest request = (HttpServletRequest) webRequest.getNativeRequest();
-			uiObject = (Object) uiA.convert(request);
-			
-			return uiObject;
-		}
-		
-		return UNRESOLVED;
-	}
-
 }

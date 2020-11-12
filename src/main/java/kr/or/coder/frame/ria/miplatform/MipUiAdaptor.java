@@ -1,15 +1,9 @@
-package kr.or.coder.frame.ria.nexacro;
-
-import java.io.IOException;
-import java.io.InputStream;
+package kr.or.coder.frame.ria.miplatform;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.nexacro17.xapi.tx.PlatformException;
-
 import kr.or.coder.frame.ria.data.RiaParameterMap;
 import kr.or.coder.frame.ria.spring.UiAdaptor;
-import kr.or.coder.frame.ria.util.RiaRequestUtil;
 
 /**
  * Nexacro UiAdaptor interface
@@ -25,7 +19,7 @@ import kr.or.coder.frame.ria.util.RiaRequestUtil;
  * </pre>
  * 
  */
-public class NxcUiAdaptor implements UiAdaptor {
+public class MipUiAdaptor implements UiAdaptor {
 
 	public Object convert(HttpServletRequest request) throws Exception {
 		
@@ -38,6 +32,5 @@ public class NxcUiAdaptor implements UiAdaptor {
         /* dataset 처리 */
 
         return paramMap;
-
 	}
 }
