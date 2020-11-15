@@ -3,6 +3,7 @@ package kr.or.coder.frame.ria.spring;
 import javax.servlet.http.HttpServletRequest;
 
 import kr.or.coder.frame.ria.miplatform.MipUiAdaptor;
+import kr.or.coder.frame.ria.nexacro.NxcUiAdaptor;
 import kr.or.coder.frame.ria.util.RiaRequestUtil;
 import kr.or.coder.frame.ria.xplatform.XpfUiAdaptor;
 
@@ -17,6 +18,6 @@ public class UiAdaptorFactory {
 	    } else if(RiaRequestUtil.isXplatformRequest(userAgent)) {
 	        return new XpfUiAdaptor();
 	    }
-	    return new UiAdaptorImpl();
+	    return new NxcUiAdaptor();
 	}
 }
