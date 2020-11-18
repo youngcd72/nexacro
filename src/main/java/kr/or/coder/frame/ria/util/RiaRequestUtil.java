@@ -1,14 +1,9 @@
 package kr.or.coder.frame.ria.util;
 
-import javax.servlet.http.HttpServletRequest;
-
-import com.nexacro17.xapi.tx.PlatformType;
-import com.nexacro17.xapi.util.StringUtils;
-
 import kr.or.coder.frame.util.StringUtil;
 
 /**
- * Spring UiAdaptor interface
+ * Request scope utils - Controller 이전 request 객체 요청관리
  *  
  * @author youngcd
  * @since 2020.11.02
@@ -26,7 +21,6 @@ public class RiaRequestUtil {
     /*
      * Ria user-agent 정의
      */
-    public static String USER_AGENT_MIPLATFORM = "miplatform";
     public static String USER_AGENT_XPLATFORM  = "xplatform";
     public static String USER_AGENT_NEXACRO    = "nexacro";
 
@@ -44,13 +38,5 @@ public class RiaRequestUtil {
             return true;
         }
         return false;        
-    }
-
-    public static boolean isMiplatformRequest(String userAgent) {
-        
-        if(!StringUtil.isEmpty(userAgent) && userAgent.toLowerCase().startsWith(USER_AGENT_MIPLATFORM)) {
-            return true;
-        }
-        return false;
     }
 }

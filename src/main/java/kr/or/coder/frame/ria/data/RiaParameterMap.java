@@ -7,14 +7,14 @@ public class RiaParameterMap<K, V>  extends HashMap<K, V> {
 
 	private static final long serialVersionUID = 1L;
 
-	private Map<String, DatasetMap> datasetMaps;
+	private Map<String, RiaDataset> datasetMaps;
 	
-	public void setDatasetMap(String dsName, DatasetMap datasetMap) {
+	public void setRiaDataset(String dsName, RiaDataset datasetMap) {
 
 		this.datasetMaps.put(dsName, datasetMap);
 	}
 	
-	public DatasetMap getDatasetMap(String dsName) {
+	public RiaDataset getRiaDataset(String dsName) {
 		
 		return datasetMaps.get(dsName);
 	}

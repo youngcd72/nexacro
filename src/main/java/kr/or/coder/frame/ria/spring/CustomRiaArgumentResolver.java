@@ -7,7 +7,7 @@ import org.springframework.web.bind.support.WebArgumentResolver;
 import org.springframework.web.context.request.NativeWebRequest;
 
 import kr.or.coder.frame.ria.data.RiaParameterMap;
-
+import kr.or.coder.frame.ria.nexacro.NxcUiAdaptor;
 
 /**
  * Spring Ria ArgumentResolver 
@@ -25,6 +25,7 @@ import kr.or.coder.frame.ria.data.RiaParameterMap;
  */
 public class CustomRiaArgumentResolver implements WebArgumentResolver {
 
+	
     public Object resolveArgument(MethodParameter methodParameter, NativeWebRequest webRequest) throws Exception {
 
         Class<?> type = methodParameter.getParameterType();
@@ -33,7 +34,7 @@ public class CustomRiaArgumentResolver implements WebArgumentResolver {
         HttpServletRequest request = (HttpServletRequest) webRequest.getNativeRequest();
 
         if(type.equals(RiaParameterMap.class)) {
-            uiA = UiAdaptorFactory.getUiAdaptor(request);
+            uiA = new NxcUiAdaptor();
         } else {
             uiA = new UiAdaptorImpl();
         }

@@ -4,7 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class DatasetMap {
+/**
+ * ria 처리결과 dataset
+ * 
+ * @author 공통팀
+ * @since 2020.11.18
+ * @version 1.0
+ * 
+ * <pre>
+ * 수정일       수정자              수정내용
+ * ----------  --------    ---------------------------
+ * 2020.11.18  	공통팀        		최초 생성
+ * </pre>
+ */
+public class RiaDataset {
 
 	private String dsName;
 	
@@ -13,9 +26,9 @@ public class DatasetMap {
 	private List<Map<String, Object>> delDsMapList;
 	private List<Map<String, Object>> readDsMapList;
 
-	public DatasetMap() {}
+	public RiaDataset() {}
 	
-	public DatasetMap(String dsName) {
+	public RiaDataset(String dsName) {
 		this.dsName = dsName;
 	}
 	

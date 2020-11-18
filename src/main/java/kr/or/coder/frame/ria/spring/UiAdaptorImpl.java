@@ -1,8 +1,11 @@
 package kr.or.coder.frame.ria.spring;
 
+import java.util.Map;
+import java.util.Set;
+
 import javax.servlet.http.HttpServletRequest;
 
-import kr.or.coder.frame.servlet.ParameterMap;
+import kr.or.coder.frame.data.ParameterMap;
 
 /**
  * Spring UiAdaptor interface
@@ -24,11 +27,17 @@ public class UiAdaptorImpl implements UiAdaptor {
         
         ParameterMap<String, Object> paramMap = new ParameterMap<String, Object>();
 
-        /* variable 처리 */
+        /* request get / post parameter 설정 */
+        Map<String, String[]> reqParamMap = request.getParameterMap();
+        Set<String> keySet = reqParamMap.keySet();
 
-        /* argument 처리 */
-
-        /* dataset 처리 */
+        for(String key : keySet) {
+        	
+            paramMap.put(key, reqParamMap.get(key));
+        }
+        
+        /* session, cookie User 정보설정 */
+        
 
         return paramMap;
 
