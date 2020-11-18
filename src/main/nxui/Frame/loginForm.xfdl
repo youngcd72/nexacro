@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<FDL version="2.0">
-  <Form id="loginForm" width="1280" height="1090" titletext="LoginForm">
-    <Layouts>
-      <Layout width="1280" height="1090" screenid="Desktop_screen"/>
-    </Layouts>
-  </Form>
-</FDL>
