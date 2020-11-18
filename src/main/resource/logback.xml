@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- configuration file for LogBack (slf4J implementation)
+See here for more details: http://gordondickens.com/wordpress/2013/03/27/sawing-through-the-java-loggers/ -->
+<configuration scan="true" scanPeriod="30 seconds">
+
+    <property name="LOG_PATH" value="C:/log"/>
+
+    <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
+        <resetJUL>true</resetJUL>
+    </contextListener>
+
+    <!-- To enable JMX Management -->
+    <jmxConfigurator />
+    
+    <shutdownHook />
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <charset>UTF-8</charset>        
+            <pattern>%d{yy-MM-dd HH:mm:ss} [%-5p] {%-12t} \(%F:%L\)#%M\(\) - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/jdcdfs.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${LOG_PATH}/citydfs-%d{yyyy-MM-dd}-%i.log</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>50MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+			<maxHistory>5</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<charset>UTF-8</charset>
+			<pattern>%d{yy-MM-dd HH:mm:ss} [%-5p] \(%F:%L\)#%M\(\) - %msg%n</pattern>
+		</encoder>
+		<!--
+		<encoder class="net.logstash.logback.encoder.LogstashEncoder" />
+		-->
+	</appender>
+
+    <appender name="QUERY" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/jdcdfs_query.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/citydfs_query-%d{yyyy-MM-dd}-%i.log</fileNamePattern>            
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP"> 
+                <maxFileSize>50MB</maxFileSize> 
+            </timeBasedFileNamingAndTriggeringPolicy> 
+            <maxHistory>5</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%d{yy-MM-dd HH:mm:ss} [%-5p] \(%F:%L\)#%M\(\) - %msg%n</pattern>
+        </encoder>     
+    </appender>
+
+    <appender name="apdUploadFileLog" class="ch.qos.logback.core.ConsoleAppender">
+        <file>${LOG_PATH}/citydfs_upload.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/jdcdfs_upload-%d{yyyy-MM-dd}-%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>50MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxHistory>5</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%d{yy-MM-dd HH:mm:ss} [%-5p] \(%F:%L\)#%M\(\) - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 
+	<appender name="stash" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+		<destination>172.24.234.13:5000</destination>
+
+		
+		<encoder class="net.logstash.logback.encoder.LogstashEncoder" />
+
+		<keepAliveDuration>5 minutes</keepAliveDuration>
+	</appender>
+     -->
+
+    <logger name="uploadFileLog">
+        <level value="debug" />
+        <appender-ref ref="apdUploadFileLog" />
+    </logger>
+
+    <logger name="com.tgcs">
+        <level value="DEBUG" />
+        <appender-ref ref="FILE" />
+    </logger>    
+
+    <logger name="com.tgcs.common">
+        <level value="DEBUG" />
+        <appender-ref ref="FILE" />        
+    </logger>
+        
+    <logger name="egovframework">
+        <level value="DEBUG" />
+        <appender-ref ref="FILE" />        
+    </logger>
+
+    <logger name="com.tobesoft">
+        <level value="INFO" />
+        <appender-ref ref="FILE" />        
+    </logger>    
+
+    <logger name="org.springframework" additivity="true">
+        <level value="INFO" />
+        <appender-ref ref="FILE" />        
+    </logger>
+
+    <logger name="org.springframework.jdbc" additivity="true">
+        <level value="DEBUG" />
+        <appender-ref ref="FILE" />        
+    </logger>
+
+    <logger name="org.springframework.web.client" additivity="true">
+        <level value="DEBUG" />
+        <appender-ref ref="FILE" />        
+    </logger>
+
+    <logger name="org.apache">
+        <level value="ERROR" />
+        <appender-ref ref="FILE" />        
+    </logger>
+
+    <logger name="org.apache.http" additivity="false">
+        <level value="WARN" />
+        <appender-ref ref="FILE" />        
+    </logger>
+
+    <logger name="org.apache.commons" additivity="true">
+        <level value="WARN" />
+        <appender-ref ref="FILE" />        
+    </logger>
+
+    <logger name="org.apache.ibatis">
+        <level value="DEBUG" />
+        <appender-ref ref="QUERY" />  
+    </logger>
+
+    <logger name="org.jboss.logging.provider">
+        <level value="DEBUG" />
+        <appender-ref ref="FILE" />         
+    </logger>
+
+    <logger name="org.mybatis">
+        <level value="DEBUG" />
+        <appender-ref ref="QUERY" />  
+    </logger>
+
+    <logger name="org.mybatis.spring">
+        <level value="INFO" />
+        <appender-ref ref="QUERY" />          
+    </logger>
+
+    <logger name="org.springframework.jdbc">
+        <level value="INFO" />
+        <appender-ref ref="QUERY" />  
+    </logger>
+
+    <logger name="java.sql" additivity="true">
+        <level value="DEBUG" />
+        <appender-ref ref="QUERY" />  
+    </logger>
+
+    <logger name="jdbc.sqlonly">
+        <level value="DEBUG" />
+        <appender-ref ref="QUERY" />            
+    </logger> 
+    
+    <logger name="jdbc.sqltiming">
+        <level value="DEBUG" />
+        <appender-ref ref="QUERY" />        
+    </logger> 
+    
+    <logger name="jdbc.audit">
+        <level value="ERROR" />
+        <appender-ref ref="QUERY" />    
+    </logger> 
+    
+    <logger name="jdbc.resultset">
+        <level value="ERROR" />
+        <appender-ref ref="QUERY" />
+    </logger>
+
+    <logger name="jdbc.resultsettable">
+        <level value="ERROR" />
+        <appender-ref ref="QUERY" />        
+    </logger>
+
+    <root level="DEBUG">
+        <appender-ref ref="CONSOLE" />
+    </root>
+
+</configuration>
