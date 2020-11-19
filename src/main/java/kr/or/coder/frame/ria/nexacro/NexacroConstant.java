@@ -16,19 +16,21 @@ package kr.or.coder.frame.ria.nexacro;
 public class NexacroConstant {
 
 	/* User-Agent */
-	public final static String USER_AGENT_XPLATFORM = "xplatform";              // Xplatform
-	public final static String USER_AGENT_NEXACRO   = "nexacro";                // Nexacro
+	public final class USER_AGENT {
+		public final static String XPLATFORM = "xplatform";     // Xplatform
+		public final static String NEXACRO   = "nexacro";       // Nexacro
+	}
 
 	/* naxcro error key string */
-	public final static String ERROR_CODE 	= "ErrorCode";						// 응답 코드 
-	public final static String ERROR_MSG 	= "ErrorMsg";						// 오류 메시지
-	
-	/* 처리결과 dataset명 */
-	public final static String OUT_VARIABLES_ATT_NAME = "outVariables";			//out variable의 object 이름
-	public final static String OUT_DATASET_ATT_NAME   = "outDataSets";			//out DataSet의 object 이름
+	public final class ERROR {
+		public final static String CODE = "ErrorCode";		    // 응답 코드 
+		public final static String MESSAGE = "ErrorMsg";        // 오류 메시지
+	}
+
+	public final static String OUT_RESULT_DATA = "RESULT_DATA"; 
 
 	/* 사용자 정의 dataset명 */
-	public final static String TRAN_INFO_DATASET_NAME   = "_DS_TRANS_INFO_";	// Nexacro과 transaction시 기본 정보를 담은 Dataset 이름
+	public final static String TRAN_INFO_DATASET_NAME   = "_DS_OUT_INFO_";	// Nexacro과 transaction시 기본 정보를 담은 Dataset 이름
 	public final static String SEARCH_INFO_DATASET_NAME = "_DS_SEARCH_INFO_";	// 조회에 필요한 파라미터 정보를 담은 Dataset 이름
 
 }

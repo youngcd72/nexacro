@@ -1,9 +1,5 @@
 package kr.or.coder.frame.ria.nexacro;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,16 +9,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.view.AbstractView;
 
-import com.nexacro17.xapi.data.DataSet;
-import com.nexacro17.xapi.data.DataSetList;
 import com.nexacro17.xapi.data.PlatformData;
-import com.nexacro17.xapi.data.Variable;
-import com.nexacro17.xapi.data.VariableList;
 import com.nexacro17.xapi.tx.PlatformResponse;
 import com.nexacro17.xapi.tx.PlatformType;
 
-import egovframework.rte.fdl.property.EgovPropertyService;
-import kr.or.coder.frame.ria.data.ConvertRiaData;
+import kr.or.coder.frame.ria.data.RiaResult;
+import kr.or.coder.frame.ria.util.RiaRequestUtil;
 
 
 /**
@@ -42,10 +34,17 @@ public class NxcView extends AbstractView {
 
 	protected Logger logger = LoggerFactory.getLogger(getClass());
 	
-	protected EgovPropertyService propertyService;
+	private String defaultContentType;
+	private String defaultCharset;
 	
-	public void setPropertiesService(EgovPropertyService propertiesService) {
-		this.propertyService = propertiesService;
+	public void setDefaultContentType(String contentType) {
+
+		this.defaultContentType = contentType; 
+	}
+	
+	public void setDefaultCharset(String charset) {
+
+		this.defaultCharset = charset;
 	}
 	
 	/**
@@ -59,29 +58,19 @@ public class NxcView extends AbstractView {
 	@Override
 	protected void renderMergedOutputModel(Map<String, Object> model, HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-		PlatformData platformData = new PlatformData();
-		VariableList outVariableList = new VariableList();
-		DataSetList outDatasetList = new DataSetList();
-
 		// 생성된 데이터를 넘기기 위해 변환
-		setOutVariableMap(model, outVariableList);
-		String sErrorMsg = setOutDataSetMap(model, outDatasetList);
-		setResult(model, outVariableList, sErrorMsg);
+		RiaResult riaResult = (RiaResult)model.get(NexacroConstant.OUT_RESULT_DATA);
+		PlatformData platformData = riaResult.getPlaformData();
 		
-		platformData.setVariableList(outVariableList);
-		platformData.setDataSetList(outDatasetList);
-
-		/* contentType 설정 */
-		String contentType = propertyService.getString("Globals.nexacro.content.type");
 		String userAgent   = request.getHeader("User-Agent");
 
 		PlatformResponse platformResponse = null;
 		
 		/* XPlatform 형식 처리 */
-		if(userAgent.toLowerCase().equals(NexacroConstant.USER_AGENT_XPLATFORM)) {
+		if(RiaRequestUtil.isXplatformRequest(userAgent)) {
 			platformResponse = new PlatformResponse(response.getOutputStream(), PlatformType.CONTENT_TYPE_BINARY, PlatformType.DEFAULT_CHAR_SET);
 		} else {
-			platformResponse = new PlatformResponse(response.getOutputStream(), contentType, PlatformType.DEFAULT_CHAR_SET);
+			platformResponse = new PlatformResponse(response.getOutputStream(), defaultContentType, PlatformType.DEFAULT_CHAR_SET);
 		}
         platformResponse.setData(platformData);
         platformResponse.sendData();

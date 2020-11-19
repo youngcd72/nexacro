@@ -1,5 +1,6 @@
 package kr.or.coder.frame.ria.util;
 
+import kr.or.coder.frame.ria.nexacro.NexacroConstant;
 import kr.or.coder.frame.util.StringUtil;
 
 /**
@@ -18,15 +19,9 @@ import kr.or.coder.frame.util.StringUtil;
  */
 public class RiaRequestUtil {
 
-    /*
-     * Ria user-agent 정의
-     */
-    public static String USER_AGENT_XPLATFORM  = "xplatform";
-    public static String USER_AGENT_NEXACRO    = "nexacro";
-
     public static boolean isNexacroRequest(String userAgent) {
         
-        if(!StringUtil.isEmpty(userAgent) && userAgent.toLowerCase().startsWith(USER_AGENT_NEXACRO)) {
+        if(!StringUtil.isEmpty(userAgent) && userAgent.toLowerCase().startsWith(NexacroConstant.USER_AGENT.NEXACRO)) {
             return true;
         }
         return false;
@@ -34,7 +29,7 @@ public class RiaRequestUtil {
 
     public static boolean isXplatformRequest(String userAgent) {
 
-        if(!StringUtil.isEmpty(userAgent) && userAgent.toLowerCase().startsWith(USER_AGENT_XPLATFORM)) {
+        if(!StringUtil.isEmpty(userAgent) && userAgent.toLowerCase().startsWith(NexacroConstant.USER_AGENT.XPLATFORM)) {
             return true;
         }
         return false;        

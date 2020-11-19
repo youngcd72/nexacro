@@ -63,7 +63,7 @@ public class NxcUiAdaptor implements UiAdaptor {
             
             DataSet ds = dsList.get(i);
             
-            paramMap.setDatasetMap(ds.getName(), ConvertRiaData.convertDatasetToDatasetMap(ds));
+            paramMap.setRiaDataset(ds.getName(), ConvertRiaData.convertDatasetToRiaDataset(ds));
         }
 
         return paramMap;

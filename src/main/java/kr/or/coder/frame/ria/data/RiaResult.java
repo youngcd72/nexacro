@@ -1,12 +1,20 @@
 package kr.or.coder.frame.ria.data;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.web.servlet.ModelAndView;
+
+import com.nexacro17.xapi.data.DataSetList;
+import com.nexacro17.xapi.data.PlatformData;
+import com.nexacro17.xapi.data.VariableList;
+
+import kr.or.coder.frame.ria.nexacro.NexacroConstant;
+
 /**
- * ria 처리결과 data
+ * ria 처리결과 Model and view
+ * 
  * 
  * @author 공통팀
  * @since 2020.11.18
@@ -19,17 +27,20 @@ import java.util.Map;
  * </pre>
  */
 public class RiaResult {
-
-	private int    errCode;
-	private String errMsg;
 	
-	private Map<String, Object> outDsMap;
-	private Map<String, Object> outVarMap;
+	private int    errorCode;
+	private String errorMsg;
+
+	private PlatformData platformData;
 
 	public RiaResult() {
 		
-		outDsMap  = new HashMap<String, Object>();
-		outVarMap = new HashMap<String, Object>();
+		errorCode = 0;
+		errorMsg  = "";
+
+		platformData = new PlatformData();
+		platformData.setVariableList(new VariableList());
+		platformData.setDataSetList(new DataSetList());
 	}
 	
 	public void addDatasetMap(String dsName, Map<String, Object> dsMap) {
@@ -42,31 +53,58 @@ public class RiaResult {
 	
 	public void addDatasetMap(String dsName, List<Map<String, Object>> dsMapList) {
 
-		outDsMap.put(dsName, dsMapList);
+		getOutDataSetList().add(ConvertRiaData.convertMapListToDataset(dsName, dsMapList));
 	}
 
-	public void addVariableMap(String varName, Object value) {
+	public void addVariableMap(String varNm, Object value) {
 
-		outVarMap.put(varName, value);
+		getOutVariableList().add(ConvertRiaData.convertObjectToVariable(varNm, value));
 	}
-	
-	public void setErrorCode(int errCode) {
 
-		this.errCode = errCode;
+	public void setErrorCode(int errorCode) {
+
+		this.errorCode = errorCode;
 	}
 
 	public int getErrorCode() {
 		
-		return errCode;
+		return errorCode;
 	}
 	
 	public void setErrorMessage(String message) {
 
-		this.errMsg = message;
+		this.errorMsg = message;
 	}
 	
 	public String getErrorMessage() {
+
+		return errorMsg;
+	}
+	
+	public DataSetList getOutDataSetList() {
+
+		return platformData.getDataSetList();
+	}
+	
+	public VariableList getOutVariableList () {
+
+		return platformData.getVariableList();
+	}
+
+	public PlatformData getPlaformData() {
 		
-		return errMsg;
+		return platformData;
+	}
+	
+	public ModelAndView getModelAndView() {
+
+		// error code / error message variable 생성
+		getOutVariableList().add(ConvertRiaData.convertObjectToVariable(NexacroConstant.ERROR.CODE, errorCode));
+		getOutVariableList().add(ConvertRiaData.convertObjectToVariable(NexacroConstant.ERROR.MESSAGE, errorMsg));
+		
+		ModelAndView mav = new ModelAndView("nxcView");
+		mav.addObject(NexacroConstant.OUT_RESULT_DATA, this);
+
+		return mav;
 	}
 }

@@ -1,8 +1,11 @@
 package kr.or.coder.frame.ria.data;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import com.nexacro17.xapi.data.DataSet;
 import com.nexacro17.xapi.data.DataTypes;
@@ -78,13 +81,13 @@ public class ConvertRiaData {
 	}
 
 	/**
-	 * Nexacro dataset을 datasetMap으로 변환
+	 * Nexacro dataset을 RiaDataset으로 변환
 	 * 
 	 * @param  VariableList
 	 * @return Map
 	 * @throws 
 	 */
-	public static RiaDataset convertDatasetToDatasetMap(DataSet ds) {
+	public static RiaDataset convertDatasetToRiaDataset(DataSet ds) {
 
         RiaDataset dsMap = new RiaDataset(ds.getName());
 
@@ -120,5 +123,75 @@ public class ConvertRiaData {
                 dsMap.addDelDsMap(delDsMap);
         }
         return dsMap;
+	}
+
+	/**
+	 * map을 Nexacro dataset으로 변환
+	 * 
+	 * @param  String
+	 * @param  Map<String, Object>
+	 * @return DataSet
+	 * @throws 
+	 */
+	public static DataSet convertMapToDataset(String dsName, Map<String, Object> dsMap) {
+
+		List<Map<String, Object>> dsMapList = new ArrayList<Map<String, Object>>();
+		dsMapList.add(dsMap);
+		
+		return convertMapListToDataset(dsName, dsMapList);
+	}
+
+	/**
+	 * map을 Nexacro dataset으로 변환
+	 * 
+	 * @param  String
+	 * @param  List<Map<String, Object>>
+	 * @return DataSet
+	 * @throws 
+	 */
+	public static DataSet convertMapListToDataset(String dsName, List<Map<String, Object>> dsMapList) {
+
+		DataSet ds = new DataSet(dsName);
+
+		if(dsMapList != null && !dsMapList.isEmpty()) {
+
+			// Header 생성
+			Map<String, Object> frstRowMap = dsMapList.get(0);
+			Set<String> headCols = frstRowMap.keySet();
+			
+			for(String headCol : headCols) {
+				ds.addColumn(headCol, getPlatformDataType(frstRowMap.get(headCol)));
+			}
+			
+			// Body 생성
+			for(int row = 0; row < dsMapList.size(); row++) {
+	
+				Map<String, Object> dsMap = dsMapList.get(row);
+				Set<String> colNms = dsMap.keySet();
+	
+				for(String colNm : colNms) {
+	
+					ds.set(row, colNm, dsMap.get(colNm));
+				}
+			}
+		}
+		return ds;
+	}
+
+	/**
+	 * Object을 Nexacro variable로 변환
+	 * 
+	 * @param  String
+	 * @param  Object
+	 * @return DataSet
+	 * @throws 
+	 */
+	public static Variable convertObjectToVariable(String varNm, Object value) {
+
+		Variable var = new Variable(varNm);
+		var.setType(getPlatformDataType(value));
+		var.set(value);
+		
+		return var;
 	}
 }

@@ -9,9 +9,9 @@ public class RiaParameterMap<K, V>  extends HashMap<K, V> {
 
 	private Map<String, RiaDataset> datasetMaps;
 	
-	public void setRiaDataset(String dsName, RiaDataset datasetMap) {
+	public void setRiaDataset(String dsName, RiaDataset riaDataset) {
 
-		this.datasetMaps.put(dsName, datasetMap);
+		this.datasetMaps.put(dsName, riaDataset);
 	}
 	
 	public RiaDataset getRiaDataset(String dsName) {
