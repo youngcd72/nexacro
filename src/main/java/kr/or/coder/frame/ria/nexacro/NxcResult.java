@@ -1,4 +1,4 @@
-package kr.or.coder.frame.ria.data;
+package kr.or.coder.frame.ria.nexacro;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,10 +10,10 @@ import com.nexacro17.xapi.data.DataSetList;
 import com.nexacro17.xapi.data.PlatformData;
 import com.nexacro17.xapi.data.VariableList;
 
-import kr.or.coder.frame.ria.nexacro.NexacroConstant;
+import kr.or.coder.frame.ria.data.ConvertRiaData;
 
 /**
- * ria 처리결과 Model and view
+ * Nexacro 처리결과
  * 
  * 
  * @author 공통팀
@@ -26,15 +26,15 @@ import kr.or.coder.frame.ria.nexacro.NexacroConstant;
  * 2020.11.18  	공통팀        		최초 생성
  * </pre>
  */
-public class RiaResult {
+public class NxcResult {
 	
 	private int    errorCode;
 	private String errorMsg;
 
 	private PlatformData platformData;
 
-	public RiaResult() {
-		
+	public NxcResult() {
+
 		errorCode = 0;
 		errorMsg  = "";
 
@@ -43,20 +43,20 @@ public class RiaResult {
 		platformData.setDataSetList(new DataSetList());
 	}
 	
-	public void addDatasetMap(String dsName, Map<String, Object> dsMap) {
+	public void addDataset(String dsName, Map<String, Object> dsMap) {
 		
 		List<Map<String, Object>> dsMapList = new ArrayList<Map<String, Object>>();
 		dsMapList.add(dsMap);
 		
-		addDatasetMap(dsName, dsMapList);
+		addDataset(dsName, dsMapList);
 	}
 	
-	public void addDatasetMap(String dsName, List<Map<String, Object>> dsMapList) {
+	public void addDataset(String dsName, List<Map<String, Object>> dsMapList) {
 
 		getOutDataSetList().add(ConvertRiaData.convertMapListToDataset(dsName, dsMapList));
 	}
 
-	public void addVariableMap(String varNm, Object value) {
+	public void addVariable(String varNm, Object value) {
 
 		getOutVariableList().add(ConvertRiaData.convertObjectToVariable(varNm, value));
 	}
@@ -91,19 +91,14 @@ public class RiaResult {
 		return platformData.getVariableList();
 	}
 
-	public PlatformData getPlaformData() {
-		
-		return platformData;
-	}
-	
-	public ModelAndView getModelAndView() {
+	public ModelAndView getRiaModelAndView() {
 
 		// error code / error message variable 생성
 		getOutVariableList().add(ConvertRiaData.convertObjectToVariable(NexacroConstant.ERROR.CODE, errorCode));
 		getOutVariableList().add(ConvertRiaData.convertObjectToVariable(NexacroConstant.ERROR.MESSAGE, errorMsg));
-		
-		ModelAndView mav = new ModelAndView("nxcView");
-		mav.addObject(NexacroConstant.OUT_RESULT_DATA, this);
+
+		ModelAndView mav = new ModelAndView();
+		mav.addObject(NexacroConstant.OUT_RESULT_DATA, platformData);
 
 		return mav;
 	}

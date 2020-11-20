@@ -13,7 +13,6 @@ import com.nexacro17.xapi.data.PlatformData;
 import com.nexacro17.xapi.tx.PlatformResponse;
 import com.nexacro17.xapi.tx.PlatformType;
 
-import kr.or.coder.frame.ria.data.RiaResult;
 import kr.or.coder.frame.ria.util.RiaRequestUtil;
 
 
@@ -59,8 +58,7 @@ public class NxcView extends AbstractView {
 	protected void renderMergedOutputModel(Map<String, Object> model, HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		// 생성된 데이터를 넘기기 위해 변환
-		RiaResult riaResult = (RiaResult)model.get(NexacroConstant.OUT_RESULT_DATA);
-		PlatformData platformData = riaResult.getPlaformData();
+		PlatformData platformData = (PlatformData)model.get(NexacroConstant.OUT_RESULT_DATA);
 		
 		String userAgent   = request.getHeader("User-Agent");
 
@@ -68,9 +66,9 @@ public class NxcView extends AbstractView {
 		
 		/* XPlatform 형식 처리 */
 		if(RiaRequestUtil.isXplatformRequest(userAgent)) {
-			platformResponse = new PlatformResponse(response.getOutputStream(), PlatformType.CONTENT_TYPE_BINARY, PlatformType.DEFAULT_CHAR_SET);
+			platformResponse = new PlatformResponse(response.getOutputStream(), PlatformType.CONTENT_TYPE_BINARY, defaultCharset);
 		} else {
-			platformResponse = new PlatformResponse(response.getOutputStream(), defaultContentType, PlatformType.DEFAULT_CHAR_SET);
+			platformResponse = new PlatformResponse(response.getOutputStream(), defaultContentType, defaultCharset);
 		}
         platformResponse.setData(platformData);
         platformResponse.sendData();
