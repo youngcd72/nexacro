@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AppVariables version="2.0">
+  <Datasets>
+    <Dataset id="gdsUser"/>
+    <Dataset id="gdsMenu"/>
+  </Datasets>
+  <Variables/>
+  <DataObjects/>
+</AppVariables>

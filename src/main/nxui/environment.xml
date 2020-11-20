@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ENV version="2.1">
+  <Environment themeid="theme::default" datatyperule="2.0">
+    <ScreenDefinition>
+      <Screen id="screenMain" type="desktop"/>
+    </ScreenDefinition>
+    <Variables>
+      <Variable id="gvRunMode"/>
+    </Variables>
+    <Cookies/>
+    <httpheader>
+      <Variable id="SubUserAgent" initval="NEXACRO"/>
+    </httpheader>
+  </Environment>
+</ENV>

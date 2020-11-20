@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <GenInfo version="1.1">
+    <Rule>
+      <ENV rule_version="1.05"/>
+      <ADL rule_version="1.14"/>
+      <FDL rule_version="1.04"/>
+      <XCSS rule_version="1.04"/>
+      <Script rule_version="1.02"/>
+    </Rule>
+    <Info project="C:\project\nexacro\egovframework\workspace\nexacro\src\main\nxui\" generated="C:\project\nexacro\egovframework\workspace\nexacro\src\main\webapp\nxui\">
+      <File url="typedefinition.xml" checksum="20201120091959" errormsg=""/>
+      <File url="appvariables.xml" checksum="20201120095545" errormsg=""/>
+      <File url="environment.xml" checksum="20201120113352" errormsg=""/>
+      <File url="_resource_\_theme_\default\theme.xcss" checksum="20201120091024" errormsg=""/>
+      <File url="appMain.xadl" checksum="20201120131312" errormsg=""/>
+      <File url="frame\frameTop.xfdl" checksum="20201120091024" errormsg=""/>
+      <File url="frame\frameLeft.xfdl" checksum="20201120105535" errormsg=""/>
+      <File url="frame\frameWork.xfdl" checksum="20201120091024" errormsg=""/>
+      <File url="nexacro17lib\framework\Framework.json" checksum="20201027213714" errormsg=""/>
+      <File url="nexacro17lib\resources\Resource.json" checksum="20201027213716" errormsg=""/>
+      <File url="nexacro17lib\component\CompBase.json" checksum="20201027213712" errormsg=""/>
+      <File url="nexacro17lib\component\ComComp.json" checksum="20201027213712" errormsg=""/>
+      <File url="nexacro17lib\component\Grid.json" checksum="20201027213712" errormsg=""/>
+      <File url="nexacro17lib\component\ListView.json" checksum="20201027213716" errormsg=""/>
+      <File url="nexacro17lib\component\DeviceAPI.json" checksum="20201027213712" errormsg=""/>
+      <File url="frame\frameLogin.xfdl" checksum="20201120131703" errormsg=""/>
+      <File url="frame\frameTab.xfdl" checksum="20201117130115" errormsg=""/>
+      <File url="frame\frameMain.xfdl" checksum="20201117130026" errormsg=""/>
+      <File url="frame\frameBottom.xfdl" checksum="20201120143327" errormsg=""/>
+    </Info>
+  </GenInfo>
+</root>

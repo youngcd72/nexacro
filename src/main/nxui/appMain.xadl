@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ADL version="2.0">
+  <Application id="appMain" screenid="screenMain" onload="Application_onload" onerror="Application_onerror">
+    <Layout>
+      <MainFrame id="mainframe" showtitlebar="true" showstatusbar="true" width="1280" height="720" titletext="NexacroFramework">
+        <VFrameSet id="HFrameSet" separatesize="50,*">
+          <Frames>
+            <ChildFrame id="TopFrame" showtitlebar="false" showstatusbar="false" formurl="frame::frameTop.xfdl"/>
+            <ChildFrame id="LoginFrame" showtitlebar="false" showstatusbar="false" formurl="frame::frameLogin.xfdl"/>
+            <HFrameSet id="VFrameSet" separatesize="200,*">
+              <Frames>
+                <ChildFrame id="LeftFrame" showtitlebar="false" showstatusbar="false" formurl="frame::frameLeft.xfdl"/>
+                <VFrameSet id="VFrameSet1" separatesize="32,*,0">
+                  <Frames>
+                    <ChildFrame id="frameTab" showtitlebar="false" showtitleicon="false" dragmovetype="none" formurl="frame::frameTab.xfdl"/>
+                    <FrameSet id="framesetWork" showtitlebar="false" showtitleicon="false">
+                      <Frames/>
+                    </FrameSet>
+                    <ChildFrame id="frameMain" formurl="frame::frameMain.xfdl" showtitlebar="false"/>
+                  </Frames>
+                </VFrameSet>
+              </Frames>
+            </HFrameSet>
+            <ChildFrame id="frameBottom" showtitlebar="false" showstatusbar="false" formurl="frame::frameBottom.xfdl" showtitleicon="false" dragmovetype="none"/>
+          </Frames>
+        </VFrameSet>
+      </MainFrame>
+    </Layout>
+  </Application>
+  <Script type="xscript5.1"><![CDATA[/**
+*  Application Main
+*
+*  @Creator 	공통팀
+*  @CreateDate 	2020.11.20
+*  @Desction    스크립트 표준 및 주석 표준 정의
+************** 소스 수정 이력 ***********************************************
+*  date          		Modifier                Description
+*******************************************************************************
+*  2020.11.20     	    공통팀 	                 최초 생성 
+*******************************************************************************
+
+/************************************************************************************************
+ * Application 변수 선언 영역
+ ************************************************************************************************/
+/* frame 정의 */
+this.gvVFrameSet  = "";
+this.gvTopFrame   = "";
+this.gvLoginFrame = "";
+this.gvHFrameSet  = "";
+this.gvLeftFrame  = "";
+this.gvVFrameSet  = "";
+this.gvWorkFrame  = "";
+this.gvMainFrame  = "";
+this.gvTabFrame   = "";
+
+/***********************************************************************************************
+ * Application 사용자 정의 함수선언 영역
+/***********************************************************************************************/
+/**
+ * 운영에서는 TRACE를 하지 않도록 설정
+ **/
+this.afnSetTraceMode = function(useTrace)
+{
+    if (!useTrace)
+    {
+        trace = function trace(){};
+    }
+}
+
+/***********************************************************************************************
+ * Application EVENT 영역
+/***********************************************************************************************/
+/**
+ * Application load 시점이벤트 처리
+ * 1. frameset 접근 변수 정의
+ * 2. runmode  설정 및 관련 처리
+ **/
+this.Application_onload = function(obj:nexacro.Application,e:nexacro.LoadEventInfo)
+{
+	var objApp = nexacro.getApplication();
+
+	// Frame 변수 저장
+	this.gvVFrameSet	= objApp.mainframe.VFrameSet;                                        // VFrameSet
+	this.gvLoginFrame	= objApp.mainframe.VFrameSet.frameLogin;                             // LoginFrame
+	this.gvHFrameSet    = objApp.mainframe.VFrameSet.HFrameSet;                              // HFrame
+	this.gvLeftFrame    = objApp.mainframe.VFrameSet.HFrameSet.frameLeft;                    // leftFrame
+	this.gvVFrameSet1   = objApp.mainframe.VFrameSet.HFrameSet.VFrameSet1;                   // VFrameSet1
+	this.gvTopFrame     = objApp.mainframe.VFrameSet.frameTop;                               // TopFrame
+	this.gvWorkFrame    = objApp.mainframe.VFrameSet.HFrameSet.VFrameSet1.framesetWork;      // workForm
+	this.gvMainFrame    = objApp.mainframe.VFrameSet.HFrameSet.VFrameSet1.frameMain;         // mainForm
+	this.gvTabFrame     = objApp.mainframe.VFrameSet.HFrameSet.VFrameSet1.frameTab;          // TabFrame
+
+	// runmode 설정 관련 처리
+	var runMode = this.gfnIsEmpty(nexacro.getEnvironmentVariable("gvRunMode")) ? "local" : nexacro.getEnvironmentVariable("gvRunMode");
+
+	var title = "";
+
+	if(runMode == "local") {
+		title = "로컬 - " + objApp.mainframe.titletext;
+	} else if(runMode == "dev") {
+		title = "개발 - " + objApp.mainframe.titletext;
+	} else if(runMode == "real") {
+		this.afnSetTraceMode(false);
+	}
+	objApp.mainframe.set_titletext(title);
+
+	// 로그인 화면 이동
+	this.gfnGoLoginPage();
+	
+	this.gvLoginFrame.set_formurl("frame::frameLogin.xfdl");
+	this.gvVFrameSet.set_separatesize("0,*,0,0");
+};
+
+/**
+ * Application error 시점이벤트 처리
+ **/
+this.Application_onerror = function(obj:nexacro.Application,e:nexacro.ErrorEventInfo)
+{
+	
+};]]></Script>
+</ADL>
