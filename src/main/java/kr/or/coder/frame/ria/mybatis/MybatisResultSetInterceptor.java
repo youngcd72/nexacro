@@ -15,6 +15,9 @@ import org.apache.ibatis.plugin.Signature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.nexacro17.xapi.data.datatype.DataType;
+import com.nexacro17.xapi.data.datatype.DataTypeFactory;
+import com.nexacro17.xapi.data.datatype.PlatformDataType;
 import com.nexacro17.xeni.extend.XeniMultipartProcBase;
 
 import kr.or.coder.frame.ria.data.RiaRstDataset;
@@ -81,9 +84,24 @@ public class MybatisResultSetInterceptor implements Interceptor {
 	            	colNm = resultMetaData.getColumnName(i);
 	            }
 
-	            String colType = resultMetaData.getColumnClassName(i);
+	            String sqlTypeName   = resultMetaData.getColumnTypeName(i);
+	            
+	            DataType dataType = DataTypeFactory.getSqlDataType(sqlTypeName);
 
-	            riaRstDataset.put(colNm, colType);
+	            if(dataType == null) {
+	                // when dbms vendor's specific column type name
+	                int javaTypeNum = resultMetaData.getColumnType(i);
+	                dataType = DataTypeFactory.getSqlDataType(javaTypeNum);
+	            }
+
+	            // find platform datatype
+	            dataType = DataTypeFactory.getPlatformDataType(dataType);
+
+	            if(dataType == null) {
+	                dataType = PlatformDataType.UNDEFINED;
+	            }
+
+	            riaRstDataset.put(colNm, dataType);
 			}
 
 			List<RiaRstMap<String, Object>> riaRstMapList = (List<RiaRstMap<String, Object>>)invocation.proceed();

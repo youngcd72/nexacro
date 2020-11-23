@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.nexacro17.xapi.data.datatype.DataType;
+
 /**
  * ria 처리결과 dataset
  * 
@@ -19,22 +21,37 @@ import java.util.Map;
  */
 public class RiaRstDataset {
 
-	public Map<String, Object> metaDataMap;
+	private Map<String, DataType> metaDataMap;
 	
-	public List<RiaRstMap<String, Object>> riaRstMapList;
+	private List<RiaRstMap<String, Object>> riaRstMapList;
 
 	public RiaRstDataset() {
 		
-		metaDataMap = new HashMap<String, Object>();
+		metaDataMap = new HashMap<String, DataType>();
 	}
 	
-	public void put(String colNm, String colType) {
+	public void put(String colNm, DataType colType) {
 
 		metaDataMap.put(colNm, colType);
 	}
 	
+	public DataType get(String colNm) {
+		
+		return metaDataMap.get(colNm);
+	}
+
+	public Map<String, DataType> getMetaDataMap() {
+		
+		return metaDataMap;
+	}
+	
 	public void setRiaRstMapList(List<RiaRstMap<String, Object>> riaRstMapList) {
 		this.riaRstMapList = riaRstMapList;
+	}
+	
+	public List<RiaRstMap<String, Object>> getRiaRstMapList() {
+		
+		return riaRstMapList;
 	}
 
 	public class RiaRstMap<K, V> extends HashMap<K, V> {

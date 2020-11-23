@@ -11,6 +11,9 @@ import com.nexacro17.xapi.data.DataSet;
 import com.nexacro17.xapi.data.DataTypes;
 import com.nexacro17.xapi.data.Variable;
 import com.nexacro17.xapi.data.VariableList;
+import com.nexacro17.xapi.data.datatype.DataType;
+
+import kr.or.coder.frame.ria.data.RiaRstDataset.RiaRstMap;
 
 /**
  * ria data 변환
@@ -178,6 +181,48 @@ public class ConvertRiaData {
 		return ds;
 	}
 
+	/**
+	 * map을 Nexacro dataset으로 변환
+	 * 
+	 * @param  String
+	 * @param  List<Map<String, Object>>
+	 * @return DataSet
+	 * @throws 
+	 */
+	public static DataSet convertRiaRstDatasetToDataset(String dsName, RiaRstDataset riaRstDs) {
+
+		DataSet ds = new DataSet(dsName);
+
+		if(riaRstDs != null) {
+
+			// Header 생성
+			List<String> colNmList = new ArrayList<String>();
+
+			Map<String, DataType> map = riaRstDs.getMetaDataMap(); 
+			Set<String> colNmSet = map.keySet();
+			
+			for(String colNm : colNmSet) {
+				
+				ds.addColumn(colNm, map.get(colNm));
+				colNmList.add(colNm);
+			}
+
+			// Body 생성
+			for(int row = 0; row < riaRstDs.getRiaRstMapList().size(); row++) {
+	
+				Map<String, Object> dsMap = riaRstDs.getRiaRstMapList().get(row);
+				Set<String> colNms = dsMap.keySet();
+	
+				for(String colNm : colNms) {
+	
+					ds.set(row, colNm, dsMap.get(colNm));
+				}
+			}
+		}
+		return ds;
+	}
+	
+	
 	/**
 	 * Object을 Nexacro variable로 변환
 	 * 

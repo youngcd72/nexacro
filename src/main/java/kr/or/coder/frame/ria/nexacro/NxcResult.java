@@ -11,6 +11,7 @@ import com.nexacro17.xapi.data.PlatformData;
 import com.nexacro17.xapi.data.VariableList;
 
 import kr.or.coder.frame.ria.data.ConvertRiaData;
+import kr.or.coder.frame.ria.data.RiaRstDataset;
 
 /**
  * Nexacro 처리결과
@@ -54,6 +55,11 @@ public class NxcResult {
 	public void addDataset(String dsName, List<Map<String, Object>> dsMapList) {
 
 		getOutDataSetList().add(ConvertRiaData.convertMapListToDataset(dsName, dsMapList));
+	}
+
+	public void addDataset(String dsName, RiaRstDataset riaRstDs) {
+
+		getOutDataSetList().add(ConvertRiaData.convertRiaRstDatasetToDataset(dsName, riaRstDs));
 	}
 
 	public void addVariable(String varNm, Object value) {
