@@ -1,4 +1,5 @@
 package kr.or.coder.frame.util;
+
 import java.lang.reflect.Array;
 import java.util.List;
 import java.util.Map;
@@ -7,13 +8,11 @@ public class MybatisUtil {
 	
 	/**
 	 * <pre>
-	 * com.zen9.capelion.fo.module.payment.util
-	 * MybatisUtil.java
 	 * mybatis 에서 사용 하는 null 처리 
 	 * </pre>
-	 * @date    : 2019.07.25
+	 * @date    : 2020.11.23
 	 * @version : 
-	 * @author  : dsyeom
+	 * @author  : 공통팀
 	 */
 	public static boolean isEmpty(Object obj){
         if( obj instanceof String ) return obj==null || "".equals(obj.toString().trim());

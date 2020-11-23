@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * ria 처리결과 dataset
+ * ria 처리요청 dataset
  * 
  * @author 공통팀
  * @since 2020.11.18
@@ -17,7 +17,7 @@ import java.util.Map;
  * 2020.11.18  	공통팀        		최초 생성
  * </pre>
  */
-public class RiaDataset {
+public class RiaReqDataset {
 
 	private String dsName;
 	
@@ -26,9 +26,9 @@ public class RiaDataset {
 	private List<Map<String, Object>> delDsMapList;
 	private List<Map<String, Object>> readDsMapList;
 
-	public RiaDataset() {}
+	public RiaReqDataset() {}
 	
-	public RiaDataset(String dsName) {
+	public RiaReqDataset(String dsName) {
 		this.dsName = dsName;
 	}
 	

@@ -87,9 +87,9 @@ public class ConvertRiaData {
 	 * @return Map
 	 * @throws 
 	 */
-	public static RiaDataset convertDatasetToRiaDataset(DataSet ds) {
+	public static RiaReqDataset convertDatasetToRiaDataset(DataSet ds) {
 
-        RiaDataset dsMap = new RiaDataset(ds.getName());
+        RiaReqDataset dsMap = new RiaReqDataset(ds.getName());
 
         Map<String, Object> insDsMap = new HashMap<String, Object>();
         Map<String, Object> uptDsMap = new HashMap<String, Object>();
