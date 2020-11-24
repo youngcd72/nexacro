@@ -8,15 +8,22 @@
         http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.0.xsd
         http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd"> 
     
-    <!-- 
-       - DataSource  
-       		- 둘 이상의 데이터소스를 사용해야 하는 경우 해당 데이터소스를 별도의 이름으로 정의하여
-       		해당 데이터소스를 사용하는 SqlMapClient 혹은 SqlSession에 데이터소스를 지정해서 사용해야 한다. 
-     -->
-    <!-- hsql 메모리 DBMS :  JDBC -->
-    <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
-        <property name="driverClassName" value="net.sf.log4jdbc.DriverSpy"/>
-        <property name="jdbcUrl"         value="jdbc:log4jdbc:hsqldb:mem:sampledb"/>
-        <property name="username"        value="sa"/>
+    <bean id="dataSourceRaw" class="org.springframework.jndi.JndiObjectFactoryBean">
+        <property name="resourceRef">
+            <value>true</value>
+        </property>
+        <property name="jndiName">
+            <value>jdbc/dfso_ds</value>
+        </property>
+    </bean>
+    
+    <bean id="dataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
+        <constructor-arg ref="dataSourceRaw" />
+        <property name="logFormatter">
+            <bean class="net.sf.log4jdbc.tools.Log4JdbcCustomFormatter">
+              <property name="loggingType" value="MULTI_LINE"/>  
+               <property name="sqlPrefix" value="SQL:::"/>  
+           </bean>  
+        </property>
     </bean>
 </beans>
