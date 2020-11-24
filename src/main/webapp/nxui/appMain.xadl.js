@@ -50,8 +50,8 @@
         
         this.mainframe_createBodyFrame = function()
         {
-            var frame0 = new VFrameSet("HFrameSet",null,null,null,null,null,null,this);
-            frame0.set_separatesize("50,*");
+            var frame0 = new VFrameSet("VFrameSet",null,null,null,null,null,null,this);
+            frame0.set_separatesize("44,0,*,0");
             this.addChild(frame0.name, frame0);
             this.frame=frame0;
 
@@ -69,8 +69,8 @@
             frame2.set_formurl("frame::frameLogin.xfdl");
 
 
-            var frame3 = new HFrameSet("VFrameSet",null,null,null,null,null,null,frame0);
-            frame3.set_separatesize("200,*");
+            var frame3 = new HFrameSet("HFrameSet",null,null,null,null,null,null,frame0);
+            frame3.set_separatesize("240,*");
             frame0.addChild(frame3.name, frame3);
 
             var frame4 = new ChildFrame("LeftFrame",null,null,null,null,null,null,"frame::frameLeft.xfdl",frame3);
@@ -199,9 +199,6 @@
 
         	// 로그인 화면 이동
         	this.gfnGoLoginPage();
-
-        	this.gvLoginFrame.set_formurl("frame::frameLogin.xfdl");
-        	this.gvVFrameSet.set_separatesize("0,*,0,0");
         };
 
         /**

@@ -1,9 +1,9 @@
 ﻿/**
 *  컨설팅 표준화 작업
-*  @FileName 		Transaction.xfdl
-*  @Creator 			kyk
-*  @CreateDate 	2017.10.17
-*  @Desction         서비스 호출 및 콜백처리
+*  @FileName 		Transaction.js
+*  @Creator 		kyk
+*  @CreateDate      2017.10.17
+*  @Desction        서비스 호출 및 콜백처리
 ************** 소스 수정 이력 ***************************************************
 *  date          		Modifier                Description
 *******************************************************************************

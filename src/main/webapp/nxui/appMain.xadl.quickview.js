@@ -148,9 +148,6 @@
 
         	// 로그인 화면 이동
         	this.gfnGoLoginPage();
-
-        	this.gvLoginFrame.set_formurl("frame::frameLogin.xfdl");
-        	this.gvVFrameSet.set_separatesize("0,*,0,0");
         };
 
         /**

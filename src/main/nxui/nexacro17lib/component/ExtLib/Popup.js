@@ -138,12 +138,6 @@ pForm.gfnOpenPopup = function ( sPopupId, sUrl, oArg, sPopupCallback, oOption)
 		
 		var rtn = system.showModalWindow(newChild, sPopupId, objParentFrame, oArg);		
         return rtn;
-//         var objCF = new ChildFrame();
-// 
-// 		objCF .init("CF_modal", 0, 0, 500, 500);
-// 		objCF .set_formurl("cmm::cmmPopup.xfdl");
-// 		var ret = system.showModalWindow(objCF , "CF_modal", this.getOwnerFrame(), {a:'aaa', b:'bbb'}, this);
-
 	}	
     else
     {
@@ -160,11 +154,5 @@ pForm.gfnOpenPopup = function ( sPopupId, sUrl, oArg, sPopupCallback, oOption)
 		newChild.set_layered(bLayered);
 		
 		newChild.showModal(objParentFrame, oArg, this, this[sPopupCallback]);
-		//newChild.titlebar.closebutton.set_visible(false);	//close버튼 visible false 처리
-		//newChild.style.set_border("2 solid #24322b");
-		//newChild.style.set_bordertype("round 10 10");
-		//newChild.style.set_background("white");    
-		//newChild.style.set_opacity(nOpacity);
-
     }
 };

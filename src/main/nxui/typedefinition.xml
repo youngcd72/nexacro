@@ -39,6 +39,7 @@
     <Service prefixid="xcssrc" type="resource" url="./_resource_/_xcss_/" version="0" cachelevel="session" include_subdir="false"/>
     <Service prefixid="imagerc" type="resource" url="./_resource_/_images_/" version="0" cachelevel="session" include_subdir="true"/>
     <Service prefixid="font" type="resource" url="./_resource_/_font_/" version="0" cachelevel="session" include_subdir="false"/>
+    <Service prefixid="extLib" type="js" url="./nexacro17lib/component/ExtLib/" version="0" cachelevel="session" include_subdir="false" communicationversion="0"/>
     <Service prefixid="frame" type="form" url="./frame/" version="0" cachelevel="session" include_subdir="false" communicationversion="0"/>
   </Services>
   <Protocols/>

@@ -19,6 +19,7 @@ if (nexacro.Environment)
         nexacro._addService("xcssrc", "file", "./_resource_/_xcss_/", "session", null, "", "0", "");
         nexacro._addService("imagerc", "file", "./_resource_/_images_/", "session", null, "", "0", "");
         nexacro._addService("font", "file", "./_resource_/_font_/", "session", null, "", "0", "");
+        nexacro._addService("extLib", "js", "./nexacro17lib/component/ExtLib/", "session", null, "", "0", "0");
         nexacro._addService("frame", "form", "./frame/", "session", null, "", "0", "0");
     	nexacro._component_uri = (nexacro._arg_compurl ? nexacro._arg_compurl : "./nexacro17lib/component/");
     	nexacro._theme_uri = "./_resource_/_theme_/";
@@ -66,7 +67,38 @@ if (nexacro.Environment)
 
 	};
     // User Script
+    env.registerScript("environment.xml", function() {
+    /**
+     * @description 통신오류 알림
+    */
+    this.Environment_onerror = function(obj,e)
+    {
+    	//trace("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Environment_onerror!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+    	//trace("e.statuscode : " + e.statuscode);
+    	//trace("e.errormsg : " + e.errormsg);
 
+    	// 스크립트 에러
+    	if (e.statuscode == 404) {
+    		alert(e.statuscode+"\n"+"Page Not Found"+"\n"+e.errormsg);
+    	}
+    	else if (e.statuscode == 408) {
+    		alert(e.statuscode+"\n"+"Request Timeout" + "\n"+e.errormsg);
+    	}
+    	else if (e.statuscode == 500) {
+    		alert(e.statuscode+"\n"+"Internal Server Error" + "\n"+e.errormsg);
+    	}
+    	else if (e.statuscode == 503) {
+    		alert(e.statuscode+"\n"+"The service is unavailable" + "\n"+e.errormsg);
+    	}
+    	else if (e.statuscode == 12029) {
+    		alert(e.statuscode+"\n"+"A connection with the server could not be established" + "\n"+e.errormsg);
+    	}
+    	// 미등록 오류 발생
+    	else {
+    		alert(e.statuscode + "\n" + e.errormsg);
+    	}
+    };
+    });
 					
     env = null;
 }

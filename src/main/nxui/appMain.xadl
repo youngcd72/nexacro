@@ -3,11 +3,11 @@
   <Application id="appMain" screenid="screenMain" onload="Application_onload" onerror="Application_onerror">
     <Layout>
       <MainFrame id="mainframe" showtitlebar="true" showstatusbar="true" width="1280" height="720" titletext="NexacroFramework">
-        <VFrameSet id="HFrameSet" separatesize="50,*">
+        <VFrameSet id="VFrameSet" separatesize="44,0,*,0">
           <Frames>
             <ChildFrame id="TopFrame" showtitlebar="false" showstatusbar="false" formurl="frame::frameTop.xfdl"/>
             <ChildFrame id="LoginFrame" showtitlebar="false" showstatusbar="false" formurl="frame::frameLogin.xfdl"/>
-            <HFrameSet id="VFrameSet" separatesize="200,*">
+            <HFrameSet id="HFrameSet" separatesize="240,*">
               <Frames>
                 <ChildFrame id="LeftFrame" showtitlebar="false" showstatusbar="false" formurl="frame::frameLeft.xfdl"/>
                 <VFrameSet id="VFrameSet1" separatesize="32,*,0">
@@ -106,9 +106,6 @@ this.Application_onload = function(obj:nexacro.Application,e:nexacro.LoadEventIn
 
 	// 로그인 화면 이동
 	this.gfnGoLoginPage();
-
-	this.gvLoginFrame.set_formurl("frame::frameLogin.xfdl");
-	this.gvVFrameSet.set_separatesize("0,*,0,0");
 };
 
 /**

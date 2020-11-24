@@ -1,8 +1,8 @@
 ﻿/**
 *  컨설팅 표준화 작업
 *  @MenuPath 
-*  @FileName 		frameBottom.xfdl 
-*  @Creator 			soojeong
+*  @FileName 	Frame.js
+*  @Creator 	soojeong
 *  @CreateDate 	2017.01.23
 *  @LastModifier  
 *  @LastModifyDate  
@@ -12,7 +12,7 @@
 ************** 소스 수정 이력 *************************************************
 *    date          		Modifier            Description
 *******************************************************************************
-*  2017.01.23     	soojeong 	           최초 생성 
+*  2017.01.23     	   soojeong 	        최초 생성 
 *******************************************************************************
 */
 
@@ -279,9 +279,23 @@ pForm.gfnSetOpenMenuDs = function(winid, menuid, strTitle, spageUrl, sGroupId)
 	var objApp = nexacro.getApplication();
 	var gdsOpen = objApp.gdsOpenMenu ;  //열린 dataset
 	var nRow = gdsOpen.addRow();
+
 	gdsOpen.setColumn(nRow, objApp.gvMenuColumns.winId, winid);
 	gdsOpen.setColumn(nRow, objApp.gvMenuColumns.menuId, menuid);
 	gdsOpen.setColumn(nRow, objApp.gvMenuColumns.title, strTitle);	
 	gdsOpen.setColumn(nRow, objApp.gvMenuColumns.groupId, sGroupId);
 	gdsOpen.setColumn(nRow, "pageUrl", spageUrl);
 };
+
+/**
+ * @class 열린화면 데이터셋에 추가 <br>
+ *
+ * @return N/A
+ */
+ pForm.gfnGoLoginPage = function() 
+ {
+	var objApp = nexacro.getApplication();
+ 
+ 	objApp.gvLoginFrame.set_formurl("frame::frameLogin.xfdl");
+	objApp.gvVFrameSet.set_separatesize("0,*,0,0");
+ }

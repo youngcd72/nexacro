@@ -5,6 +5,7 @@
 	"license": "",
 	"scripts": [
         "ExtLib/Frame.js",
+		"ExtLib/Grid.js",
         "ExtLib/BaseUtil.js",
         "ExtLib/Transaction.js",
         "ExtLib/Popup.js",

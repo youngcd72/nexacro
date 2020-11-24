@@ -1,7 +1,7 @@
 ﻿/**
 *  컨설팅 표준화 작업
-*  @FileName 		Util.js 
-*  @Creator 			soojeong
+*  @FileName    BaseUtil.js 
+*  @Creator     ywkim
 *  @CreateDate 	2017.03.08
 *  @Desction   
 ************** 소스 수정 이력 ***************************************************
@@ -23,9 +23,9 @@ var pForm = nexacro.Form.prototype;
  * @param {String} sValue	
  * @return {Boolean} true/false
  * @example
- * var bNull = this.gfnIsNull("aaa");	// false
+ * var bNull = this.gfnIsEmpty("aaa");	// false
  */
-pForm.gfnIsNull = function(sValue)
+pForm.gfnIsEmpty = function(sValue)
 {
     if (new String(sValue).valueOf() == "undefined") return true;
     if (sValue == null) return true;

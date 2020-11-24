@@ -42,7 +42,7 @@ pForm.gfnExcelExport = function(objGrid,  sSheetName, sFileName)
 		sSheetName =  "sheet1";
 	}
 	
-	var svcUrl = "svcurl::XExportImport.do";
+	var svcUrl = "svcurl::/common/exportGridExcel.do";
 	this.objExport = null
 	this.objExport = new ExcelExportObject();
 	
@@ -105,7 +105,7 @@ pForm.gfnExcelImportAll = function(objDs,sSheet,sHead,sBody,sCallback,sImportId,
 	if(this.gfnIsNull(sBody)) sBody = "A2";
 	if(this.gfnIsNull(sHead)) return false;
 	
-	var svcUrl = "svcurl::XExportImport.do";
+	var svcUrl = "svcurl::/common/importGridExcel.do";
 	
 	var objImport ;	
 	
@@ -166,7 +166,7 @@ pForm.gfnExcelImport = function(sDataset,sSheet,sBody,sCallback, sImportId, objF
 	if(this.gfnIsNull(sSheet)) sSheet = "sheet1";
 	if(this.gfnIsNull(sBody)) sBody = "A2";
 	
-	var svcUrl = "svcurl::XExportImport.do";
+	var svcUrl = "svcurl::/common/importGridExcel.do";
 	
 	var objImport ;	
 	objImport = new nexacro.ExcelImportObject(sDataset+"_ExcelImport",this);				
