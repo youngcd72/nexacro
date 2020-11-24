@@ -18,7 +18,7 @@ import kr.or.coder.frame.util.StringUtil;
  * 
  */
 public class RiaRequestUtil {
-	
+
     public static boolean isNexacroRequest(String userAgent) {
         
         if(!StringUtil.isEmpty(userAgent) && userAgent.toLowerCase().startsWith(NexacroConstant.USER_AGENT.NEXACRO)) {

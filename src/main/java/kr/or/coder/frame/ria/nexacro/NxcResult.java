@@ -13,6 +13,7 @@ import com.nexacro17.xapi.data.VariableList;
 import kr.or.coder.frame.ria.data.ConvertRiaData;
 import kr.or.coder.frame.ria.data.RiaRstDataset;
 
+
 /**
  * Nexacro 처리결과
  * 
@@ -103,7 +104,7 @@ public class NxcResult {
 		getOutVariableList().add(ConvertRiaData.convertObjectToVariable(NexacroConstant.ERROR.CODE, errorCode));
 		getOutVariableList().add(ConvertRiaData.convertObjectToVariable(NexacroConstant.ERROR.MESSAGE, errorMsg));
 
-		ModelAndView mav = new ModelAndView();
+		ModelAndView mav = new ModelAndView("nxcView");
 		mav.addObject(NexacroConstant.OUT_RESULT_DATA, platformData);
 
 		return mav;
