@@ -5,10 +5,10 @@ import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
-import kr.or.coder.frame.dao.CommonAbstractDAO;
+import kr.or.coder.frame.dao.BaseDAO;
 
 @Repository("codeDAO")
-public class CodeDAO extends CommonAbstractDAO {
+public class CodeDAO extends BaseDAO {
 
 	public List<Map<String, Object>> getCodeList(String grpCode) {
 		
