@@ -11,10 +11,12 @@ import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
+import org.springframework.stereotype.Repository;
 
 import kr.or.coder.frame.ria.data.RiaRstDataset;
 
-public class CommonAbstractDAO extends SqlSessionDaoSupport {
+@Repository("baseDAO")
+public class BaseDAO extends SqlSessionDaoSupport {
 
 	private SqlSessionFactory sqlSessionFactory;
 	
