@@ -5,6 +5,7 @@
 
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg index="0" ref="sqlSessionFactory" />
+		<constructor-arg index="1" value="BATCH" />
 	</bean>
 	
 	<!-- define the SqlSessionFactory -->
@@ -14,9 +15,4 @@
 		<property name="mapperLocations" value="classpath:sqlmap/mappers/**/*mapper.xml" />
 	</bean>
 
-	<!-- scan for mappers and let them be autowired -->
-    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.nexacro.uiadaptor_spring_sample.mapper" />
-    </bean>
-	
 </beans>
