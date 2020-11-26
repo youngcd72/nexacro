@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- DispatcherServlet application context for Application's web tier. -->
+<beans xmlns="http://www.springframework.org/schema/beans" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:p="http://www.springframework.org/schema/p" 
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
+
+    <!-- The controllers are autodetected POJOs labeled with the @Controller annotation. -->
+    <context:component-scan base-package="com.smsp">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/>
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
+    </context:component-scan>
+
+    <!-- view 정의 -->    
+    <bean id="urlBasedView" class="org.springframework.web.servlet.view.UrlBasedViewResolver" p:order="1"
+        p:viewClass="org.springframework.web.servlet.view.JstlView"
+        p:prefix="/WEB-INF/jsp/" p:suffix=".jsp"/>
+
+    <!-- 넥사크로플랫폼 AnnotationMethodHandlerAdapter 구현체 등록 -->
+    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+        <property name="customArgumentResolvers">
+            <list>
+                <bean class="com.smsp.zframe.ria.spring.CustomRiaArgumentResolver">
+                    <property name="uiAdaptor" ref="nxcAdaptor" />
+                </bean>
+                <bean class="com.smsp.zframe.ria.spring.CustomParamMapArgumentResolver">
+                    <property name="uiAdaptor" ref="uiAdaptor" />
+                </bean>
+            </list>
+        </property>
+    </bean>
+
+    <bean name="nxcAdaptor" class="com.smsp.zframe.ria.nexacro.NxcUiAdaptorImpl" >
+        <property name="systemProps" ref="systemProps"/>
+    </bean>
+
+    <bean name="uiAdaptor" class="com.smsp.zframe.ria.spring.UiAdaptorImpl" />
+
+    <!-- 넥사크로플랫폼 기본 View 등록 -->
+    <bean id="nxcView" class="com.smsp.zframe.ria.nexacro.NxcView" >
+        <property name="systemProps" ref="systemProps"/>
+    </bean>
+
+    <!-- 넥사크로플랫폼 EXCEPTION-RESOLVER 등록 -->
+    <bean id="exceptionResolver" class="com.smsp.zframe.ria.exception.RiaExceptionResolver" p:order="1">
+        <property name="messageSource" ref="commonMessageSource" />
+    </bean>
+
+    <!-- annotation-driven 설정. -->
+    <mvc:annotation-driven />
+</beans>
