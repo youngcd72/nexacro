@@ -52,10 +52,6 @@ public class BaseServiceImpl {
 		return totUptCnt;
 	}
 	
-	public int updateBatch(String queryId, List<Object> paramObjList) throws Exception {
-		return baseDAO.updateBatch(queryId, paramObjList);
-	}
-	
 	public int delete(String queryId) throws Exception {
 		return baseDAO.delete(queryId); 
 	}

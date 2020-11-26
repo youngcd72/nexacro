@@ -30,6 +30,13 @@
 	</bean>
 	<bean class="org.springframework.util.AntPathMatcher" id="antPathMater"/>
 	
+	<!-- common message source -->
+    <bean id="commonMessageSource" class="com.smsp.zframe.message.CommonMessageSource">
+        <property name="reloadableResourceBundleMessageSource">
+            <ref bean="messageSource" />
+        </property>
+    </bean> 
+	
 	<!-- system properties -->
 	<util:properties id="systemProps" location="classpath:/properties/system.properties"/>
 </beans>

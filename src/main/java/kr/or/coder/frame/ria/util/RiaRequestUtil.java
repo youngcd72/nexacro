@@ -1,5 +1,7 @@
 package kr.or.coder.frame.ria.util;
 
+import javax.servlet.http.HttpServletRequest;
+
 import kr.or.coder.frame.ria.nexacro.NexacroConstant;
 import kr.or.coder.frame.util.StringUtil;
 
@@ -19,7 +21,17 @@ import kr.or.coder.frame.util.StringUtil;
  */
 public class RiaRequestUtil {
 
-    public static boolean isNexacroRequest(String userAgent) {
+    public static boolean isRiaRequest(HttpServletRequest request) {
+
+        if(isNexacroRequest(request) || isXplatformRequest(request)) {
+            return true;
+        }
+        return false;
+    }
+    
+    public static boolean isNexacroRequest(HttpServletRequest request) {
+        
+        String userAgent = request.getHeader("User-Agent");
         
         if(!StringUtil.isEmpty(userAgent) && userAgent.toLowerCase().startsWith(NexacroConstant.USER_AGENT.NEXACRO)) {
             return true;
@@ -27,8 +39,14 @@ public class RiaRequestUtil {
         return false;
     }
 
-    public static boolean isXplatformRequest(String userAgent) {
+    public static boolean isXplatformRequest(HttpServletRequest request) {
 
+        String userAgent = request.getHeader("SubUserAgent");
+        
+        if(StringUtil.isEmpty(userAgent)) {
+            userAgent = request.getHeader("User-Agent");
+        }
+        
         if(!StringUtil.isEmpty(userAgent) && userAgent.toLowerCase().startsWith(NexacroConstant.USER_AGENT.XPLATFORM)) {
             return true;
         }

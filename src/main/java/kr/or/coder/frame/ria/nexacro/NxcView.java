@@ -1,7 +1,9 @@
 package kr.or.coder.frame.ria.nexacro;
 
 import java.util.Map;
+import java.util.Properties;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -33,18 +35,12 @@ public class NxcView extends AbstractView {
 
 	protected Logger logger = LoggerFactory.getLogger(getClass());
 	
-	private String defaultContentType;
-	private String defaultCharset;
-	
-	public void setDefaultContentType(String contentType) {
-
-		this.defaultContentType = contentType; 
-	}
-	
-	public void setDefaultCharset(String charset) {
-
-		this.defaultCharset = charset;
-	}
+    private Properties sysProps;
+    
+    @Resource(name = "systemProps")
+    public void setSystemProps(Properties sysProps) {
+        this.sysProps = sysProps;
+    }
 	
 	/**
 	 * 뷰 수행
@@ -60,15 +56,13 @@ public class NxcView extends AbstractView {
 		// 생성된 데이터를 넘기기 위해 변환
 		PlatformData platformData = (PlatformData)model.get(NexacroConstant.OUT_RESULT_DATA);
 		
-		String userAgent   = request.getHeader("User-Agent");
-
 		PlatformResponse platformResponse = null;
 		
 		/* XPlatform 형식 처리 */
-		if(RiaRequestUtil.isXplatformRequest(userAgent)) {
-			platformResponse = new PlatformResponse(response.getOutputStream(), PlatformType.CONTENT_TYPE_BINARY, defaultCharset);
+		if(RiaRequestUtil.isXplatformRequest(request)) {
+			platformResponse = new PlatformResponse(response.getOutputStream(), PlatformType.CONTENT_TYPE_BINARY, PlatformType.DEFAULT_CHAR_SET);
 		} else {
-			platformResponse = new PlatformResponse(response.getOutputStream(), defaultContentType, defaultCharset);
+			platformResponse = new PlatformResponse(response.getOutputStream(), sysProps.getProperty("nexacro.content.type"), PlatformType.DEFAULT_CHAR_SET);
 		}
         platformResponse.setData(platformData);
         platformResponse.sendData();

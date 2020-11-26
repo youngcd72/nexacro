@@ -10,6 +10,7 @@ import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.stereotype.Repository;
 
@@ -18,15 +19,10 @@ import kr.or.coder.frame.ria.data.RiaRstDataset;
 @Repository("baseDAO")
 public class BaseDAO extends SqlSessionDaoSupport {
 
-	private SqlSessionFactory sqlSessionFactory;
-	
-	@Resource(name = "sqlSession")
-	public void setSqlSessionFactory(SqlSessionFactory sqlSession) { 
-		
-		super.setSqlSessionFactory(sqlSession);
-		
-		this.sqlSessionFactory = sqlSession;
-	}
+    @Resource(name = "sqlSession")
+    public void setSqlSessionTemplate(SqlSessionTemplate sqlSession) { 
+        super.setSqlSessionTemplate(sqlSession);
+    }
 	
 	public int insert(String queryId) { 
 		return getSqlSession().insert(queryId); 
@@ -44,26 +40,6 @@ public class BaseDAO extends SqlSessionDaoSupport {
 		return getSqlSession().update(queryId, paramObj); 
 	}
 
-	public int updateBatch(String queryId, List<Object> paramObjList) {
-
-		SqlSession sqlSession = sqlSessionFactory.openSession(ExecutorType.BATCH);
-
-		int totUptCnt  = 0;
-
-        try {
-                
-            for (Object paramObj : paramObjList) {                     
-            	totUptCnt += sqlSession.update(queryId, paramObj);
-            }
- 
-        } finally {
-            sqlSession.flushStatements();
-            sqlSession.close();
-        }
-
-        return totUptCnt;
-	}
-	
 	public int delete(String queryId) { 
 		return getSqlSession().delete(queryId); 
 	}
