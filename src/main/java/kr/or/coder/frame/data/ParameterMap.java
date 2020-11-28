@@ -20,7 +20,10 @@ import kr.or.coder.frame.util.NumberUtil;
  */
 public class ParameterMap<K, V> extends HashMap<K, V> {
 
-    private static final long serialVersionUID = 1L;
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -3850619441195411470L;
 
     /**
      * Object 형식을 int형식으로 반환

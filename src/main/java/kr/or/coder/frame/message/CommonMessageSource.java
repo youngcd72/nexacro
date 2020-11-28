@@ -6,25 +6,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.MessageSource;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
-import org.springframework.dao.CannotAcquireLockException;
-import org.springframework.dao.CannotSerializeTransactionException;
-import org.springframework.dao.CleanupFailureDataAccessException;
-import org.springframework.dao.ConcurrencyFailureException;
-import org.springframework.dao.DataAccessResourceFailureException;
-import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.dao.DataRetrievalFailureException;
-import org.springframework.dao.DeadlockLoserDataAccessException;
-import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.dao.IncorrectResultSizeDataAccessException;
-import org.springframework.dao.IncorrectUpdateSemanticsDataAccessException;
-import org.springframework.dao.InvalidDataAccessApiUsageException;
-import org.springframework.dao.InvalidDataAccessResourceUsageException;
-import org.springframework.dao.PermissionDeniedDataAccessException;
-import org.springframework.dao.PessimisticLockingFailureException;
-import org.springframework.dao.TypeMismatchDataAccessException;
-import org.springframework.dao.UncategorizedDataAccessException;
-import org.springframework.jdbc.BadSqlGrammarException;
-import org.springframework.jdbc.UncategorizedSQLException;
 
 /**
  * 공통 메시지 관리

@@ -14,7 +14,8 @@ import com.nexacro17.xapi.tx.PlatformType;
 
 import kr.or.coder.frame.ria.data.ConvertRiaData;
 import kr.or.coder.frame.ria.data.RiaParameterMap;
-import kr.or.coder.frame.ria.spring.UiAdaptor;
+import kr.or.coder.frame.spring.UiAdaptor;
+
 
 /**
  * Nexacro UiAdaptor interface
