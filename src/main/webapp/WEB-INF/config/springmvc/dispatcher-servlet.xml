@@ -11,7 +11,7 @@
         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
 
     <!-- The controllers are autodetected POJOs labeled with the @Controller annotation. -->
-    <context:component-scan base-package="com.smsp">
+    <context:component-scan base-package="com.nexacro">
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/>
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
@@ -26,29 +26,29 @@
     <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
         <property name="customArgumentResolvers">
             <list>
-                <bean class="com.smsp.zframe.ria.spring.CustomRiaArgumentResolver">
+                <bean class="kr.or.coder.frame.ria.resolver.CustomRiaArgumentResolver">
                     <property name="uiAdaptor" ref="nxcAdaptor" />
                 </bean>
-                <bean class="com.smsp.zframe.ria.spring.CustomParamMapArgumentResolver">
+                <bean class="kr.or.coder.frame.resolver.CustomParamMapArgumentResolver">
                     <property name="uiAdaptor" ref="uiAdaptor" />
                 </bean>
             </list>
         </property>
     </bean>
 
-    <bean name="nxcAdaptor" class="com.smsp.zframe.ria.nexacro.NxcUiAdaptorImpl" >
+    <bean name="nxcAdaptor" class="kr.or.coder.frame.ria.nexacro.NxcUiAdaptorImpl" >
         <property name="systemProps" ref="systemProps"/>
     </bean>
 
-    <bean name="uiAdaptor" class="com.smsp.zframe.ria.spring.UiAdaptorImpl" />
+    <bean name="uiAdaptor" class="kr.or.coder.frame.spring.UiAdaptorImpl" />
 
     <!-- 넥사크로플랫폼 기본 View 등록 -->
-    <bean id="nxcView" class="com.smsp.zframe.ria.nexacro.NxcView" >
+    <bean id="nxcView" class="kr.or.coder.frame.ria.nexacro.NxcView" >
         <property name="systemProps" ref="systemProps"/>
     </bean>
 
     <!-- 넥사크로플랫폼 EXCEPTION-RESOLVER 등록 -->
-    <bean id="exceptionResolver" class="com.smsp.zframe.ria.exception.RiaExceptionResolver" p:order="1">
+    <bean id="exceptionResolver" class="kr.or.coder.frame.ria.resolver.CustomRiaExceptionResolver" p:order="1">
         <property name="messageSource" ref="commonMessageSource" />
     </bean>
 

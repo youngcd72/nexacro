@@ -65,13 +65,10 @@ public class NxcExcelUtil {
 	private void init() {
 		
 		/* import / export 경로 설정 */
-		absImportPath = propertyService.getString("Globals.excel.import.Path");
-		absExportPath = propertyService.getString("Globals.excel.export.Path");
+		absImportPath = propertyService.getString("xeni.excel.import.Path");
+		absExportPath = propertyService.getString("xeni.excel.export.Path");
 		
-		exportDownUrl = propertyService.getString("Globals.excel.export.down.url");
-		
-		/* import excel file upload handler 설정 */
-		XeniProperties.setProperty("xeni.multipart.proc", "com.tgcs.common.ria.extend.XeniMultipartHandler");
+		exportDownUrl = propertyService.getString("xeni.excel.export.down.url");
 	}
 	
 	public int gridImport(HttpServletRequest request, HttpServletResponse response) throws Exception {

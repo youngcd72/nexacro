@@ -22,9 +22,9 @@ See here for more details: http://gordondickens.com/wordpress/2013/03/27/sawing-
     </appender>
 
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${LOG_PATH}/jdcdfs.log</file>
+        <file>${LOG_PATH}/nexacro.log</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<fileNamePattern>${LOG_PATH}/citydfs-%d{yyyy-MM-dd}-%i.log</fileNamePattern>
+			<fileNamePattern>${LOG_PATH}/nexacro-%d{yyyy-MM-dd}-%i.log</fileNamePattern>
 			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
 				<maxFileSize>50MB</maxFileSize>
 			</timeBasedFileNamingAndTriggeringPolicy>
@@ -40,9 +40,9 @@ See here for more details: http://gordondickens.com/wordpress/2013/03/27/sawing-
 	</appender>
 
     <appender name="QUERY" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${LOG_PATH}/jdcdfs_query.log</file>
+        <file>${LOG_PATH}/nexacro_query.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${LOG_PATH}/citydfs_query-%d{yyyy-MM-dd}-%i.log</fileNamePattern>            
+            <fileNamePattern>${LOG_PATH}/nexacro_query-%d{yyyy-MM-dd}-%i.log</fileNamePattern>            
             <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP"> 
                 <maxFileSize>50MB</maxFileSize> 
             </timeBasedFileNamingAndTriggeringPolicy> 
@@ -55,9 +55,9 @@ See here for more details: http://gordondickens.com/wordpress/2013/03/27/sawing-
     </appender>
 
     <appender name="apdUploadFileLog" class="ch.qos.logback.core.ConsoleAppender">
-        <file>${LOG_PATH}/citydfs_upload.log</file>
+        <file>${LOG_PATH}/nexacro_upload.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${LOG_PATH}/jdcdfs_upload-%d{yyyy-MM-dd}-%i.log</fileNamePattern>
+            <fileNamePattern>${LOG_PATH}/nxacro_upload-%d{yyyy-MM-dd}-%i.log</fileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <maxFileSize>50MB</maxFileSize>
             </timeBasedFileNamingAndTriggeringPolicy>
