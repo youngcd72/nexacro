@@ -1,11 +1,16 @@
-package kr.or.coder.frame.ria.spring;
+package kr.or.coder.frame.spring;
 
 import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import kr.or.coder.frame.data.ParameterMap;
+
+
 
 /**
  * Spring UiAdaptor interface
@@ -23,6 +28,9 @@ import kr.or.coder.frame.data.ParameterMap;
  */
 public class UiAdaptorImpl implements UiAdaptor {
 
+	protected Logger logger = LoggerFactory.getLogger(getClass());
+	
+	
     public Object convert(HttpServletRequest request) throws Exception {
         
         ParameterMap<String, Object> paramMap = new ParameterMap<String, Object>();

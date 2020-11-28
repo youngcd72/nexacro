@@ -1,4 +1,4 @@
-package kr.or.coder.frame.ria.spring;
+package kr.or.coder.frame.spring;
 
 import javax.servlet.http.HttpServletRequest;
 

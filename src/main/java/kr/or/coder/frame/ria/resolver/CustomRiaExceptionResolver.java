@@ -1,4 +1,4 @@
-package kr.or.coder.frame.ria.exception;
+package kr.or.coder.frame.ria.resolver;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,9 +21,9 @@ import kr.or.coder.frame.ria.util.RiaRequestUtil;
  * @see NexacroException
  * 
  */
-public class RiaExceptionResolver extends AbstractHandlerExceptionResolver {
+public class CustomRiaExceptionResolver extends AbstractHandlerExceptionResolver {
 
-	private final Logger logger = LoggerFactory.getLogger(RiaExceptionResolver.class);
+	private final Logger logger = LoggerFactory.getLogger(getClass());
 
 	private CommonMessageSource messageSource;
 	
@@ -41,15 +41,17 @@ public class RiaExceptionResolver extends AbstractHandlerExceptionResolver {
             
             NxcResult nxcResult = new NxcResult();
             
-            // PlatformException..
+            // TO-DO Exception 별 처리 분리 필요
+            
+            
             nxcResult.setErrorCode(-1);
             nxcResult.setErrorMessage(messageSource.getMessage("error.common.exception"));         
-
+            
             return nxcResult.getRiaModelAndView();
 	    }
 
-	    // Error 페이지로 이동
-	    ModelAndView mav = new ModelAndView("");
+	    // 일반 환경 - Error 페이지로 이동
+	    ModelAndView mav = new ModelAndView("/common/error");
         
 	    return mav;
 	}

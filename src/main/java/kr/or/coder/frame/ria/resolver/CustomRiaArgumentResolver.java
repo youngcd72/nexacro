@@ -1,4 +1,4 @@
-package kr.or.coder.frame.ria.spring;
+package kr.or.coder.frame.ria.resolver;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -6,7 +6,8 @@ import org.springframework.core.MethodParameter;
 import org.springframework.web.bind.support.WebArgumentResolver;
 import org.springframework.web.context.request.NativeWebRequest;
 
-import kr.or.coder.frame.data.ParameterMap;
+import kr.or.coder.frame.ria.data.RiaParameterMap;
+import kr.or.coder.frame.spring.UiAdaptor;
 
 /**
  * Spring Ria ArgumentResolver 
@@ -22,7 +23,7 @@ import kr.or.coder.frame.data.ParameterMap;
  * </pre>
  * 
  */
-public class CustomParamMapArgumentResolver implements WebArgumentResolver {
+public class CustomRiaArgumentResolver implements WebArgumentResolver {
 
 	private UiAdaptor uiA;
 	
@@ -36,7 +37,7 @@ public class CustomParamMapArgumentResolver implements WebArgumentResolver {
         
         HttpServletRequest request = (HttpServletRequest) webRequest.getNativeRequest();
          
-        if(type.equals(ParameterMap.class)) {
+        if(type.equals(RiaParameterMap.class)) {
 
             return uiA.convert(request);
         }
