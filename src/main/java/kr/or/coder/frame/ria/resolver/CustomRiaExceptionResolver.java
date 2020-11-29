@@ -36,23 +36,24 @@ public class CustomRiaExceptionResolver extends AbstractHandlerExceptionResolver
 	 */
 	protected ModelAndView doResolveException(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
 	    
-		// 
-	    if(RiaRequestUtil.isRiaRequest(request)) {
-            
+        // 
+        if(RiaRequestUtil.isRiaRequest(request)) {
+
             NxcResult nxcResult = new NxcResult();
             
             // TO-DO Exception 별 처리 분리 필요
-            
-            
+
             nxcResult.setErrorCode(-1);
             nxcResult.setErrorMessage(messageSource.getMessage("error.common.exception"));         
             
             return nxcResult.getRiaModelAndView();
-	    }
+        }
 
-	    // 일반 환경 - Error 페이지로 이동
-	    ModelAndView mav = new ModelAndView("/common/error");
+        // 일반 환경 - Error 페이지로 이동
+        ModelAndView mav = new ModelAndView("/common/error");
         
-	    return mav;
+        // TO-DO Exception 별 처리 분리 필요
+        
+        return mav;
 	}
 }

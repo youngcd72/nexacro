@@ -30,16 +30,6 @@ public class RiaRequestUtil {
     }
     
     public static boolean isNexacroRequest(HttpServletRequest request) {
-        
-        String userAgent = request.getHeader("User-Agent");
-        
-        if(!StringUtil.isEmpty(userAgent) && userAgent.toLowerCase().startsWith(NexacroConstant.USER_AGENT.NEXACRO)) {
-            return true;
-        }
-        return false;
-    }
-
-    public static boolean isXplatformRequest(HttpServletRequest request) {
 
         String userAgent = request.getHeader("SubUserAgent");
         
@@ -50,6 +40,17 @@ public class RiaRequestUtil {
         if(!StringUtil.isEmpty(userAgent) && userAgent.toLowerCase().startsWith(NexacroConstant.USER_AGENT.XPLATFORM)) {
             return true;
         }
-        return false;        
+        return false; 
+    }
+
+    public static boolean isXplatformRequest(HttpServletRequest request) {
+
+        
+        String userAgent = request.getHeader("User-Agent");
+        
+        if(!StringUtil.isEmpty(userAgent) && userAgent.toLowerCase().startsWith(NexacroConstant.USER_AGENT.NEXACRO)) {
+            return true;
+        }
+        return false;
     }
 }
