@@ -2,9 +2,13 @@ package kr.or.coder.frame.ria.resolver;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.MethodParameter;
-import org.springframework.web.bind.support.WebArgumentResolver;
+import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
+import org.springframework.web.method.support.HandlerMethodArgumentResolver;
+import org.springframework.web.method.support.ModelAndViewContainer;
 
 import kr.or.coder.frame.ria.data.RiaParameterMap;
 import kr.or.coder.frame.spring.UiAdaptor;
@@ -23,24 +27,27 @@ import kr.or.coder.frame.spring.UiAdaptor;
  * </pre>
  * 
  */
-public class CustomRiaArgumentResolver implements WebArgumentResolver {
+public class CustomRiaArgumentResolver implements HandlerMethodArgumentResolver  {
 
-	private UiAdaptor uiA;
-	
-	public void setUiAdaptor(UiAdaptor uiA) {
-		this.uiA = uiA;
-	}
-	
-    public Object resolveArgument(MethodParameter methodParameter, NativeWebRequest webRequest) throws Exception {
+    private final Logger logger = LoggerFactory.getLogger(getClass());
+    
+    private UiAdaptor uiA;
+    
+    public void setUiAdaptor(UiAdaptor uiA) {
+        this.uiA = uiA;
+    }
+    
+    @Override
+    public boolean supportsParameter(MethodParameter methodParameter) {
+        return methodParameter.getClass().isAssignableFrom(RiaParameterMap.class);
+    }
 
-        Class<?> type = methodParameter.getParameterType();
-        
-        HttpServletRequest request = (HttpServletRequest) webRequest.getNativeRequest();
-         
-        if(type.equals(RiaParameterMap.class)) {
-
-            return uiA.convert(request);
-        }
-        return UNRESOLVED;
-	}
+    @Override
+    public Object resolveArgument(MethodParameter methodParameter,
+                                  ModelAndViewContainer modelAndViewContainer,
+                                  NativeWebRequest nativeWebRequest,
+                                  WebDataBinderFactory webDataBinderFactory) throws Exception {
+        HttpServletRequest request = (HttpServletRequest) nativeWebRequest.getNativeRequest();
+        return uiA.convert(request);
+    }
 }

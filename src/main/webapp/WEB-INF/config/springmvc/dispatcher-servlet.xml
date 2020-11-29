@@ -23,19 +23,6 @@
         p:prefix="/WEB-INF/jsp/" p:suffix=".jsp"/>
 
     <!-- 넥사크로플랫폼 AnnotationMethodHandlerAdapter 구현체 등록 -->
-    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
-        <property name="customArgumentResolvers">
-            <list>
-                <bean class="kr.or.coder.frame.ria.resolver.CustomRiaArgumentResolver">
-                    <property name="uiAdaptor" ref="nxcAdaptor" />
-                </bean>
-                <bean class="kr.or.coder.frame.resolver.CustomParamMapArgumentResolver">
-                    <property name="uiAdaptor" ref="uiAdaptor" />
-                </bean>
-            </list>
-        </property>
-    </bean>
-
     <bean name="nxcAdaptor" class="kr.or.coder.frame.ria.nexacro.NxcUiAdaptorImpl" >
         <property name="systemProps" ref="systemProps"/>
     </bean>
@@ -53,5 +40,14 @@
     </bean>
 
     <!-- annotation-driven 설정. -->
-    <mvc:annotation-driven />
+    <mvc:annotation-driven>
+        <mvc:argument-resolvers>
+             <bean class="com.smsp.zframe.ria.resolver.CustomRiaArgumentResolver">
+                 <property name="uiAdaptor" ref="nxcAdaptor" />
+             </bean>
+             <bean class="com.smsp.zframe.resolver.CustomParamMapArgumentResolver">
+                 <property name="uiAdaptor" ref="uiAdaptor" />
+             </bean>
+        </mvc:argument-resolvers>
+    </mvc:annotation-driven>
 </beans>
