@@ -12,7 +12,8 @@
 ************** 소스 수정 이력 *************************************************
 *    date          		Modifier            Description
 *******************************************************************************
-*  2017.01.23     	   soojeong 	        최초 생성 
+*  2017.01.23     	   soojeong 	        최초 생성
+*  2020.01.16          ywkim                WorkFrame Popup 정보 추가
 *******************************************************************************
 */
 
@@ -79,6 +80,7 @@ pForm.gfnAddPage = function(sMenuId, sPreFix, sArgment)
 	objNewFrame.ARG_FORM_ID		= sFormId;
 	objNewFrame.ARG_MENU_ID		= sMenuId;
 	objNewFrame.ARG_MENU_NM		= sMenuNm;
+	objNewFrame.popup           = {};
 	objNewFrame.set_titletext(sMenuNm); 
 	objNewFrame.set_resizable(true);
 	objNewFrame.set_openstatus("maximize");
